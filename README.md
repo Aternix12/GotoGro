@@ -76,11 +76,11 @@ We will get to this
 This may look like a lot, but there are only a few areas we will need to understand to get started.
 [Laravel Documentation if you feel like it] (<https://laravel.com/docs/10.x>)
 
--Views are located in resources/views. This is where we will be editing the HTML and CSS. (Presentation Layer)
--Controllers are located in app/Http/Controllers. This is where we will be editing the PHP. (Business Logic)
--Routes are located in routes/web.php. This is where we will be editing the routes that are used to access the controllers. (Routing)
--Models are located in app/Models. This is where we will be editing the models that are used to access the database. (Object Oriented Data Layer)
--The database is located in database/migrations. This is where we will be editing the database schema. (Data Layer)
+- Views are located in resources/views. This is where we will be editing the HTML and CSS. (Presentation Layer)
+- Controllers are located in app/Http/Controllers. This is where we will be editing the PHP. (Business Logic)
+- Routes are located in routes/web.php. This is where we will be editing the routes that are used to access the controllers. (Routing)
+- Models are located in app/Models. This is where we will be editing the models that are used to access the database. (Object Oriented Data Layer)
+- The database is located in database/migrations. This is where we will be editing the database schema. (Data Layer)
 
 ## Branch Convention
 
