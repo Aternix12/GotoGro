@@ -18,27 +18,37 @@ Ensure that you have these installed on your machine, and that you can access th
 ## Installation
 
 1. Clone this repo (kinda useful) and go to its directory that you cloned to
+
 2. Install Composer dependencies (a php dependency manager) within the project directory
+'''
 composer install
-
+'''
 3. Install NPM dependencies (a javascript dependency manager)
+'''
 npm install
-
+'''
 4. Create a copy of your .env file (this is a local environment file that is used to store local environment variables like database credentials, port, etc.)
+'''
 cp .env.example .env
-
+'''
 5. Generate an app encryption key (this is used to encrypt your app's user sessions and other encrypted data)
+'''
 php artisan key:generate
-
+'''
 6. Create an empty database for our application. (make sure to configure your .env file with the correct database information)
+'''
 mysql -u root -p
 create database goto_gro
+'''
 
 7. Migrate and seed the database (this will create the tables and seed the database with dummy data that we make on the fly)
+'''
 php artisan migrate --seed
-
+'''
 8. Serve the application on the PHP development server
+'''
 php artisan serve
+'''
 Remember that pressing ctrl-c will stop the server from running.
 
 9. Visit localhost:8000 in your browser to see the application running.
@@ -52,11 +62,11 @@ We will get to this
 This may look like a lot, but there are only a few areas we will need to understand to get started.
 [Laravel Documentation if you feel like it] (<https://laravel.com/docs/10.x>)
 
-Views are located in resources/views. This is where we will be editing the HTML and CSS. (Presentation Layer)
-Controllers are located in app/Http/Controllers. This is where we will be editing the PHP. (Business Logic)
-Routes are located in routes/web.php. This is where we will be editing the routes that are used to access the controllers. (Routing)
-Models are located in app/Models. This is where we will be editing the models that are used to access the database. (Object Oriented Data Layer)
-The database is located in database/migrations. This is where we will be editing the database schema. (Data Layer)
+-Views are located in resources/views. This is where we will be editing the HTML and CSS. (Presentation Layer)
+-Controllers are located in app/Http/Controllers. This is where we will be editing the PHP. (Business Logic)
+-Routes are located in routes/web.php. This is where we will be editing the routes that are used to access the controllers. (Routing)
+-Models are located in app/Models. This is where we will be editing the models that are used to access the database. (Object Oriented Data Layer)
+-The database is located in database/migrations. This is where we will be editing the database schema. (Data Layer)
 
 ## Branch Convention
 
