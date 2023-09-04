@@ -10,6 +10,10 @@ Ensure that you have these installed on your machine, and that you can access th
 [Composer] (<https://getcomposer.org/download/>)
 
 [PHP] (<https://www.php.net/manual/en/install.php>)
+Please make sure that you enable the following extensions in your php.ini file by removing the preceding semicolon (;):
+
+- extension=fileinfo
+- extension=zip
 
 [Node] (<https://nodejs.org/en/download/>)
 
@@ -35,7 +39,6 @@ npm install
 
 ```
 cp .env.example .env
-
 ```
 
 5. Generate an app encryption key (this is used to encrypt your app's user sessions and other encrypted data)
