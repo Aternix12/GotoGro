@@ -17,7 +17,10 @@ Please make sure that you enable the following extensions in your php.ini file b
 
 [Node] (<https://nodejs.org/en/download/>)
 
-[MySQL] (<https://dev.mysql.com/downloads/installer/>)
+[XAMPP] (<https://www.apachefriends.org/download.html>)
+This is for the database. You can use whatever you want, but this is the easiest to use.
+MySQL is the database that we will be using, and it is included in XAMPP. 
+To run the database, you will need to start the Apache and MySQL modules in XAMPP.
 
 ## Installation
 
@@ -50,8 +53,8 @@ php artisan key:generate
 6. Create an empty database for our application. (make sure to configure your .env file with the correct database information)
 
 ```
-mysql -u root -p
-create database goto_gro
+Use xampp to create the database goto_gro. Make sure the user is the same as in the .env. The password should be blank.
+You can launch phpmyadmin from xampp to do this under MySQL.
 ```
 
 7. Migrate and seed the database (this will create the tables and seed the database with dummy data that we make on the fly)
@@ -60,7 +63,7 @@ create database goto_gro
 php artisan migrate --seed
 ```
 
-8. Serve the application on the PHP development server
+8. Serve the application on the PHP development server. Well done, the application is now running on your machine. (this will start the server on port 8000)
 
 ```
 php artisan serve
@@ -83,7 +86,7 @@ This may look like a lot, but there are only a few areas we will need to underst
 - Controllers are located in app/Http/Controllers. This is where we will be editing the PHP. (Business Logic)
 - Routes are located in routes/web.php. This is where we will be editing the routes that are used to access the controllers. (Routing)
 - Models are located in app/Models. This is where we will be editing the models that are used to access the database. (Object Oriented Data Layer)
-- The database is located in database/migrations. This is where we will be editing the database schema. (Data Layer)
+- The database schema is located in database/migrations. This is where we will be editing the database schema and dummy data. (Data Layer)
 
 ## Branch Convention
 
