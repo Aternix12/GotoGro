@@ -17,11 +17,10 @@
     </header>
 
     <aside>
-        @yield('sidebar')
+        @include('sidebar')
     </aside>
 
     <main>
-
         @yield('content')
     </main>
 

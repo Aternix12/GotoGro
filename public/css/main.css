@@ -57,3 +57,21 @@ button.btn.btn-primary {
 button.btn.btn-primary:hover {
   background-color: #0056b3;
 }
+
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+aside {
+    background-color: lightgrey;
+    width: 200px;
+    height: 100vh;
+    padding: 15px;
+}
+
+main {
+    flex: 1;
+    padding: 15px;
+}

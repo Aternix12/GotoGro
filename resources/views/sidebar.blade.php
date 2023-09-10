@@ -1,3 +1,1 @@
-@section('sidebar')
-    <p>Custom Sidebar Content</p>
-@endsection
+<p>Custom Sidebar Content</p>
