@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('genders', function (Blueprint $table) {
-            $table->tinyIncrements('id');
+            $table->tinyIncrements('GenderID');
             $table->string('gender_name', 32);
             $table->timestamps();
         });
