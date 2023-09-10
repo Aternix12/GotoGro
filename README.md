@@ -77,16 +77,69 @@ Remember that pressing ctrl-c will stop the server from running.
 
 We will get to this
 
-## Laravel Documentation
+## Development Guide
 
 This may look like a lot, but there are only a few areas we will need to understand to get started.
 [Laravel Documentation if you feel like it] (<https://laravel.com/docs/10.x>)
+
+ChatGPT is your friend. You will likely get the answer you are looking for as this is a basic Laravel project and there are many resources online.
 
 - Views are located in resources/views. This is where we will be editing the HTML and CSS. (Presentation Layer)
 - Controllers are located in app/Http/Controllers. This is where we will be editing the PHP. (Business Logic)
 - Routes are located in routes/web.php. This is where we will be editing the routes that are used to access the controllers. (Routing)
 - Models are located in app/Models. This is where we will be editing the models that are used to access the database. (Object Oriented Data Layer)
 - The database schema is located in database/migrations. This is where we will be editing the database schema and dummy data. (Data Layer)
+
+
+To first get the database full of the tables and dummy data, we will need to run the following command:
+
+```
+php artisan migrate:fresh --seed
+```
+
+This will drop all the tables and recreate them with the dummy data. This is useful if you want to start fresh.
+
+Then to run the application, we will need to run the following command:
+
+```
+php artisan serve
+```
+Then, visit the following address for the member create page:
+localhost:8000/members/create
+
+### Views (Webpages)
+Views are located in resources/views. This is where we will be editing the HTML and CSS and using blade. Blade is a templating engine that allows us to use PHP in our HTML. This is useful for things like loops and conditionals. For example, if we want to loop through a list of members and display their names, we can do something like this:
+
+```
+@foreach ($members as $member)
+    <p>This is member {{ $member->id }}</p>
+@endforeach
+```
+
+A good example of this is under resources/views/member/index.blade.php, which is our member create form that is currently working.
+
+This will loop through the members and display their id. The $members variable is passed from the controller to the view.
+
+### Controllers (Business Logic)
+Controllers are located in app/Http/Controllers. This is where we will be editing the PHP. Controllers are used to handle requests and return responses, for example CRUD and other business logic. For example, if we want to return a view, we can do something like this:
+
+```
+public function index()
+{
+    return view('member.index');
+}
+```
+
+This will return the view located in resources/views/members/index.blade.php.
+
+### Routes 
+Routes are located in routes/web.php. This is where we will be editing the routes that are used to access the controllers. For example, if we want to access the index function in the MemberController, we can do something like this:
+
+```
+Route::get('/members', [MemberController::class, 'index']);
+```
+
+This will access the index function in the MemberController. We will get to models later.
 
 ## Branch Convention
 
