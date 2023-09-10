@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\GroceryItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::get('/', function () {
 });
 
 Route::resource('members', MemberController::class);
+
+Route::resource('items', GroceryItemController::class);
