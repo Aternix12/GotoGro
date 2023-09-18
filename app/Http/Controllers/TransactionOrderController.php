@@ -5,54 +5,55 @@ namespace App\Http\Controllers;
 // the bellow video is how I feel whist doing this right now.
 // https://www.youtube.com/watch?v=r7l0Rq9E8MY
 
-use App\Models\Member;
-use App\Models\TransactionOrder;
+
+use App\Models\SalesTransaction;
 use App\Models\GroceryItem;
+use App\Models\TransactionOrder;
 use Illuminate\Http\Request;
 
 class TransactionOrderController extends Controller
 {
     public function index()
     {   // resources/view/transactionOrder
+        // Hope this works 
         $TransactionOrder = TransactionOrder::all();
         return view('transactionOrder.index', compact('transactionOrder'));
     }
 
     public function create()
     {
-        $TransactionID = Gender::all();
-        $memberID = MemberID::all();
-        $memberID = MemberID::all();
-        return view('members.create', compact('genders', 'memberStatuses'));
+        $TransactionID = SalesTransaction::all();
+        $GroceryItemID = GroceryItem::all();
+        return view('TransactionOrder.create', compact('TransactionID', 'GroceryID'));
     }
 
     public function store(Request $request)
     {
-        Member::create($request->all());
-        return redirect()->route('members.index');
+        TransactionOrder::create($request->all());
+        return redirect()->route('TransactionOrder.index');
     }
 
-    public function show(Member $member)
+    public function show(TransactionOrder $TransactionOrder)
     {
-        return view('members.show', compact('member'));
+        return view('TransactionOrder.show', compact('TransactionOrder'));
     }
 
-    public function edit(Member $member)
+    public function edit(TransactionOrder $TransactionOrder)
     {
-        $genders = Gender::all();
-        $memberStatuses = MemberStatus::all();
-        return view('members.edit', compact('member', 'genders', 'memberStatuses'));
+        $TransactionID = SalesTransaction::all();
+        $GroceryItemID = GroceryItem::all();
+        return view('TransactionOrder.edit', compact('GroceryID', 'TransactionID'));
     }
 
-    public function update(Request $request, Member $member)
+    public function update(Request $request, TransactionOrder $TransactionOrder)
     {
-        $member->update($request->all());
-        return redirect()->route('members.index');
+        $TransactionOrder->update($request->all());
+        return redirect()->route('TransactionOrder.index');
     }
-
-    public function destroy(Member $member)
+    // to yeet the tuple
+    public function destroy(TransactionOrder $TransactionOrder)
     {
-        $member->delete();
-        return redirect()->route('members.index');
+        $TransactionOrder->delete();
+        return redirect()->route('TransactionOrder.index');
     }
 }
