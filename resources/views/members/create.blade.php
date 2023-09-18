@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+<!-- 
+Page is working... cannot for the life of me link stylesheet without using "app.blade.php", same issue i]with 'mylk.png'. 
+Think I am stupid? 
+Currently have tweaked with app.blade to allow this page to be formatted using my own css.. 
+Will fix later, when i get more time -->
 @section('content')
     <nav class="header">
         <h1 class="Title">Add Member</h1>
