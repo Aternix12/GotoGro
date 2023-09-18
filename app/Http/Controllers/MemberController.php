@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Models\Gender;
 use App\Models\MemberStatus;
+use App\Models\SalesTransaction;
+use App\Models\TransactionOrder;
+use App\Models\GroceryItem;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -29,6 +32,48 @@ class MemberController extends Controller
     }
 
     public function show(Member $member)
+    {
+        // Get Transactions
+        $transactions = $member.salesTransactions();
+
+        // Get Top 5 Grocery Items
+
+        // Get grocery items from all transactions
+        $items = []
+        foreach ($transactions as $t) {
+            $transactionItems = $t->transactionOrders();
+
+            foreach ($transactionItems as $item) {
+                $items[] = $item->groceryItem();
+            }
+        }
+
+        // Get repeated ones
+        $itemFrequencies = array();
+        foreach ($items as $item) {
+            if (array_key_exists($item->ProductName, $itemFrequencies)) {
+                $itemFrequencies[$item->ProductName]++;
+            } else {
+                $itemFrequencies[$item->ProductName] = 1;
+            }
+        }
+
+        // Descending order
+        arsort($itemFrequencies);
+        
+        // Select top 5
+        $topFiveItems = [
+            $itemFrequencies[0],
+            $itemFrequencies[1],
+            $itemFrequencies[2],
+            $itemFrequencies[3],
+            $itemFrequencies[4],
+        ];
+
+        return view('members.show', compact('member', 'transactions', 'topFiveItems'));
+    }
+
+    public function edit(Member $member)
     {
         $genders = Gender::all();
         $memberStatuses = MemberStatus::all();

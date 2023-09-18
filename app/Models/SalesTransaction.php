@@ -47,5 +47,11 @@ class salesTransaction extends Model
         return $this->belongsTo(SalesTransaction::class, 'Date', 'Date');
     }
     
+     /** Get the transaction orders (grocery items) associated with this transaction
+     **/
+    public function transactionOrders()
+    {
+        return $this->hasMany(TransactionOrder::class, 'TransactionID', 'TransactionID');
+    }
     use HasFactory;
 }
