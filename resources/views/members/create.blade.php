@@ -1,20 +1,6 @@
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="author" content="Dale Bent" />
-        <meta name="keywords" content="HTML5, tags, CSS" />
-        <link rel="stylesheet" href=" {{ asset('css/app.css') }}" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet"
-        />
-        <title>Add Member Page</title>
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <nav class="header">
             <h1 class="Title">Add Member</h1>
         </nav>
@@ -161,8 +147,8 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
+
+        @endsection
 
 
 

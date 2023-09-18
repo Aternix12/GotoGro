@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'My Laravel App')</title>
     <!-- Add CSS files here -->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}"> 
+    <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> -->
+    <link rel="stylesheet" href=" {{ asset('css/app.css') }}" />
    
 </head>
 
