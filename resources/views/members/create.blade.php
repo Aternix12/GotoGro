@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section(content')
+@section('content')
     <nav class="header">
         <h1 class="Title">Add Member</h1>
     </nav>
