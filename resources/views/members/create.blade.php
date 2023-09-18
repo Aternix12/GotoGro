@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="Dale Bent" />
         <meta name="keywords" content="HTML5, tags, CSS" />
-        <link rel="stylesheet" href="/resources/css/app.css" />
+        <link rel="stylesheet" href="GOTOGRO/resources/css/app.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
