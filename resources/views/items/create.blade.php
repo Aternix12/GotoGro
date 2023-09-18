@@ -24,8 +24,8 @@
         </nav>
         <div class="content">
             <div class="LeftGrid">
-                <a href="mylk.com" id="Mylk"
-                    ><img src="/App/Webpages/img/mylk.png" alt="Mylk" />
+                <a href="" id="Mylk"
+                    ><img src="/resources/css/img/mylk.png" alt="Mylk" />
                 </a>
             </div>
 
