@@ -22,6 +22,7 @@ Route::get('/', function () {
 });
 
 Route::resource('members', MemberController::class);
+Route::get('/search/members', [MemberController::class, 'search'])->name('members.search');
 
 Route::resource('items', GroceryItemController::class);
 

@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'My Laravel App')</title>
+    <title>@yield('title', 'GotoGro - MRM')</title>
     <!-- Add CSS files here -->
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -32,7 +32,7 @@
     </footer>
 
     <!-- Add JS files here -->
-
+    @yield('scripts')
 </body>
 
 </html>

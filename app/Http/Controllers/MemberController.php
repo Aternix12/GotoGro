@@ -47,4 +47,16 @@ class MemberController extends Controller
         $member->delete();
         return redirect()->route('members.index');
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('query');
+        info('Search term is: ' . $searchTerm);
+        $members = Member::where('FirstName', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('LastName', 'LIKE', '%' . $searchTerm . '%')
+            ->get();
+        info('Members found are: ' . $members);
+
+        return response()->json($members);
+    }
 }

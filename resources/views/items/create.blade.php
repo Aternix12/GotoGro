@@ -19,7 +19,12 @@
 
             <div class="form-group">
                 <label for="Price">Price</label>
-                <input type="text" name="Price" id="Price" class="form-control" required>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input type="text" name="Price" id="Price" class="form-control" required>
+                </div>
             </div>
 
             <div class="form-group">
