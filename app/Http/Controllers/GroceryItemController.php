@@ -26,7 +26,7 @@ class GroceryItemController extends Controller
 
     public function show(GroceryItem $item)
     {
-        return view('items.show', compact('groceryItem'));
+        return view('items.show', compact('item'));
     }
 
     public function edit(GroceryItem $item)

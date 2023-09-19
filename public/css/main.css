@@ -211,3 +211,17 @@ main {
   cursor: pointer;
   margin-bottom: 20px;
 }
+
+/* Override Bootstrap styles for grey button */
+.btn.btn-grey {
+  background-color: grey !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 100px !important; /* Rounded corners */
+  cursor: pointer !important;
+}
+
+.btn.btn-grey:hover {
+  background-color: darkgrey !important;
+}
