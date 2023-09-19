@@ -10,7 +10,7 @@
             href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
-        <title>Create Member Page</title>
+        <title>Create Transaction Page</title>
     </head>
     <body>
     <nav class="header">
@@ -20,7 +20,7 @@
         <div class="LeftGrid">
             <div class="LGwrapper">
                 <a href="" id="Mylk"
-                    ><img src= "{{ asset('css/img/mylk.png') }}" alt="Mylk"
+                    ><img src="/resources/css/img/mylk.png" alt="Mylk"
                 /></a>
             </div>
         </div>
