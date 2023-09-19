@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\GroceryItemController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::get('/', function () {
 Route::resource('members', MemberController::class);
 
 Route::resource('items', GroceryItemController::class);
+
+Route::resource('transactions', TransactionController::class);

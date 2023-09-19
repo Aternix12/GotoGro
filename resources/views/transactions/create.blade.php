@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+
+@section('content')
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -13,6 +17,10 @@
         <title>Create Transaction Page</title>
     </head>
     <body>
+
+
+
+    @section('content') 
     <nav class="header">
         <h1 class="Title">Add Transaction</h1>
     </nav>
@@ -29,12 +37,12 @@
                 <div class="container">
                     <h1>Add Transaction Order</h1>
             
-                    <form action="{{ route('transaction_orders.store') }}" method="POST">
+                    <form action="{{ route('transactions.store') }}" method="POST">
                         @csrf                 
                         <div class="form-group">
                             <label for="MemberID">Member ID</label>
                             <select name="MemeberID" id="MemberID" class="form-control" required>
-                                @foreach ($member as $memberID)
+                                @foreach ($MemberID as $member)
                                     <option value="{{ $member->MemberID }}">{{ $member->MemberID }}</option>
                                 @endforeach
                             </select>
@@ -43,7 +51,7 @@
                         <div class="form-group">
                             <label for="GroceryID">Grocery Item ID</label>
                             <select name="GroceryID" id="GroceryID" class="form-control" required>
-                                @foreach ($item as $GroceryID)
+                                @foreach ($GroceryID as $item)
                                     <option value="{{ $item->GroceryID }}">{{ $item->Grocery }}</option>
                                 @endforeach
                             </select>
@@ -66,8 +74,11 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+    @endsection
+
+@verbatim
+<!-- </body>
+</html> -->
 
 
 
@@ -114,3 +125,5 @@ Testing front end with included form
 @endsection
 
 -->
+
+@endverbatim
