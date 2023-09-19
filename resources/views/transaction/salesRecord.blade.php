@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-   <!-- <link rel="stylesheet" type="text/css" href="{{ asset('path-to-your-stylesheet.css') }}"> -->
+
 
     <div class="header">
         <h1 class="Title">Transaction History</h1>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="RightGrid">
-            <!-- Other content or widgets on the right side -->
+        
         </div>
     </div>
 @endsection
