@@ -1,10 +1,21 @@
-@extends('layouts.app')
-
-@section('content')
-<head class="header">
-            <h1 class="Title">View Member</h1>
-        </head>
-        
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"> 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <title>Member View Page</title>
+    </head>
+    <body> 
+        <nav class="header">
+                    <h1 class="Title">View Member</h1>
+        </nav>
             <div class="content">
                 <div class="LeftGrid">
                     <a href="mylk.com"><img src="mylk.png" alt="Mylk" /></a>
@@ -13,6 +24,7 @@
                     <div class="MidUp">
                         <p class="MemberName">Member Name</p>
                     </div>
+                    <!--Placeholder for form -->
                     <div class="MidMid">
                         <h2 class="">Details</h2>
                         <form action="" class="Form" id="DetailsForm">
@@ -58,5 +70,7 @@
                     </div>
                 </div>
             </div>
+         </body>
+ </html>
         
-@endsection
+

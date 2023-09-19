@@ -10,7 +10,7 @@
             href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
-        <title>Member View Page</title>
+        <title>Create Item Page</title>
     </head>
     <body>
         <nav class="header">
@@ -18,8 +18,8 @@
         </nav>
         <div class="content">
             <div class="LeftGrid">
-                <a href="" id="Mylk"
-                    ><img src="/resources/css/img/mylk.png" alt="Mylk" />
+                <a href="" id="Mylk" >
+                    <img src= "{{ asset('css/img/mylk.png') }}" alt="Mylk"/>
                 </a>
             </div>
 
@@ -31,8 +31,8 @@
                         <form action="{{ route('items.store') }}" method="POST">
                             @csrf
 
-                            <div class="form-group">
-                                <label for="ProductName">Product Name</label>
+                            <div class="form-group create-item">
+                                <label class="formPrompt" for="ProductName">Product Name</label>
                                 <input
                                     type="text"
                                     name="ProductName"
@@ -42,8 +42,8 @@
                                 />
                             </div>
 
-                            <div class="form-group">
-                                <label for="Stock">Stock</label>
+                            <div class="form-group create-item">
+                                <label class="formPrompt" for="Stock">Stock</label>
                                 <input
                                     type="text"
                                     name="Stock"
@@ -53,8 +53,8 @@
                                 />
                             </div>
 
-                            <div class="form-group">
-                                <label for="Price">Price</label>
+                            <div class="form-group create-item">
+                                <label class="formPrompt" for="Price">Price</label>
                                 <input
                                     type="text"
                                     name="Price"
@@ -64,8 +64,8 @@
                                 />
                             </div>
 
-                            <div class="form-group">
-                                <label for="Location">Location</label>
+                            <div class="form-group create-item">
+                                <label  class="formPrompt" for="Location">Location</label>
                                 <input
                                     type="text"
                                     name="Location"
@@ -74,10 +74,11 @@
                                     required
                                 />
                             </div>
-
-                            <button type="submit" class="btn btn-primary">
-                                Add Item
-                            </button>
+                            <div class="create-button">
+                                <button type="submit" class="btn btn-primary">
+                                    Add Item
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

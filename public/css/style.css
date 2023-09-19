@@ -105,16 +105,31 @@ body {
     display: flex;
     align-items: center;
     padding: 10px 200px;
-    background-color: rgb(215, 214, 215);
+    background-color: rgb(235, 235, 235);
     border-radius: 5px;
     margin: 10px 0;
     justify-content: space-between;
 }
 
+.create-item {
+    margin-top: 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border: rgb(231, 231, 231) solid 2px;
+}
+
+.create-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
 .formPrompt {
     display: flex;
-    padding-right: 60px;
+
     align-items: center;
+    font-weight: bold;
 }
 
 input {
@@ -133,10 +148,11 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 10px 50px;
     border-radius: 8px;
     background-color: rgb(114, 188, 100);
     border: 0ch;
+    font-weight: bolder;
 }
 
 button:hover {
