@@ -108,3 +108,41 @@ main {
   left: 10px;
   /* Add other icon styles here */
 }
+
+/* Grid container styles */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two equal-width columns */
+  gap: 20px;
+  max-width: 600px; /* Set the maximum width of the grid container */
+  margin: 0 auto; /* Center the container */
+}
+/* Grid item styles */
+.grid-item {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* Makes the item a square */
+  border-radius: 8px; /* Rounded corners */
+  background-color: lightgrey;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+.grid-item:hover {
+  background-color: #ccc;
+}
+
+/* Center the text */
+.grid-item > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

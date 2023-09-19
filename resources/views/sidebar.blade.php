@@ -1,12 +1,15 @@
-<img src="{{ asset('img/mylk.png') }}" alt="Mylk Logo" class="img-full-width">
+<a href="/">
+    <img src="{{ asset('img/mylk.png') }}" href="/" alt="Mylk Logo" class="img-full-width">
+</a>
 <nav class="vertical-menu">
-    <a href="#home">Home</a>
-    <a href="#members">Members</a>
-    <a href="#new-member">New Member</a>
-    <a href="#grocery-items">Grocery Items</a>
-    <a href="#new-grocery-item">New Grocery Item</a>
-    <a href="#new-transaction">New Transaction</a>
-    <a href="#reports">Reports</a>
+    <a href="/">Home</a>
+    <a href="{{ route('members.index') }}">Members</a>
+    <a href="{{ route('members.create') }}">New Member</a>
+    <a href="{{ route('items.index') }}">Grocery Items</a>
+    <a href="{{ route('items.create') }}">New Grocery Item</a>
+    <a href="{{ route('transactions.create') }}">New Transaction</a>
+    <a href="{{ route('sales.index') }}">Sales</a>
+    <a href="{{ route('reports.index') }}">Reports</a>
 </nav>
 <div class="github-icon">
     <a href="https://github.com/Aternix12/GotoGro" target="_blank">
