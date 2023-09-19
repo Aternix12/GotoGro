@@ -1,4 +1,6 @@
 @extends('layouts.app')
+
+
 @section('content')
 <html>
     <head>
@@ -34,14 +36,14 @@
             <div class="MiddleGridContent">
                 <div class="container">
                     <h1>Add Transaction Order</h1>
-            
+                    <!--Just realsed i was commenting wring. changed from member to transaction ID. Keeping in this folder until discussions are had --->
                     <form action="{{ route('transactions.store') }}" method="POST">
                         @csrf                 
                         <div class="form-group">
-                            <label for="MemberID">Member ID</label>
-                            <select name="MemeberID" id="MemberID" class="form-control" required>
-                                @foreach ($MemberID as $member)
-                                    <option value="{{ $member->MemberID }}">{{ $member->MemberID }}</option>
+                            <label for="TransactionID">Transaction ID</label>
+                            <select name="TransactionID" id="TransactionID" class="form-control" required>
+                                @foreach ($TransactionID as $TransactionID)
+                                    <option value="{{ $TransactionID->TransactionID }}">{{ $TransactionID->TransactionID }}</option>
                                 @endforeach
                             </select>
                         </div>
