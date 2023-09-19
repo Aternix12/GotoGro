@@ -9,8 +9,8 @@ class GroceryItemController extends Controller
 {
     public function index()
     {
-        $items = GroceryItem::all();
-        return view('items.index', compact('items'));
+        $groceryItems = GroceryItem::all();
+        return view('items.index', compact('groceryItems'));
     }
 
     public function create()
@@ -26,7 +26,7 @@ class GroceryItemController extends Controller
 
     public function show(GroceryItem $item)
     {
-        return view('items.show', compact('item'));
+        return view('items.show', compact('groceryItem'));
     }
 
     public function edit(GroceryItem $item)

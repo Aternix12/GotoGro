@@ -30,14 +30,10 @@ class MemberController extends Controller
 
     public function show(Member $member)
     {
-        return view('members.show', compact('member'));
-    }
-
-    public function edit(Member $member)
-    {
         $genders = Gender::all();
         $memberStatuses = MemberStatus::all();
-        return view('members.edit', compact('member', 'genders', 'memberStatuses'));
+        $member->DateOfBirth = \Carbon\Carbon::parse($member->DateOfBirth);
+        return view('members.show', compact('member', 'genders', 'memberStatuses'));
     }
 
     public function update(Request $request, Member $member)
