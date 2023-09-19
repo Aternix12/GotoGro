@@ -69,9 +69,42 @@ aside {
     width: 200px;
     height: 100vh;
     padding: 15px;
+    box-sizing: border-box;
 }
 
 main {
     flex: 1;
     padding: 15px;
+}
+
+.img-full-width {
+    width: 80%;
+}
+
+/* Vertical menu styles */
+.vertical-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid #ccc;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+  color: white;
+}
+
+/* Github icon styles */
+.github-icon {
+  position: absolute;
+  width: 15%;
+  bottom: 10px;
+  left: 10px;
+  /* Add other icon styles here */
 }
