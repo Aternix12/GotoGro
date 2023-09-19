@@ -1,14 +1,10 @@
 @extends('layouts.app')
-// work in progress copy of members for transaction order
 @section('content')
     <div class="container">
         <h1>Add Transaction Order</h1>
-
         <form action="{{ route('transactionOrder.store') }}" method="POST">
             @csrf
 // transactionID, GroceryID, Quantity  
-
-
             <div class="form-group">
                 <label for="MemberID">Member ID</label>
                 <select name="MemeberID" id="MemberID" class="form-control" required>

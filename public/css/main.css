@@ -1,45 +1,50 @@
-h1, p , h2, a, label, body {
+h1,
+p,
+h2,
+a,
+label,
+body {
     font-family: Arial, sans-serif;
 }
 
-/* General page styles */
+/*General page styles */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-  margin: 20px;
-  padding: 20px;
-  background-color: white;
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
 }
 
 /* Sidebar styles */
 /* Assuming you will add a sidebar element */
+
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 200px;
-  background-color: #ccc; /* Grey color */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #ccc; /* Grey color */
 }
 
 /* Button styles */
 button.btn.btn-primary {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px; /* Rounded corners */
-  cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
 }
 
 button.btn.btn-primary:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
-
 
 body {
     display: flex;

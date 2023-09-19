@@ -11,6 +11,9 @@ class TransactionOrder extends Model
     protected $primaryKey = ['TransactionID', 'GroceryID'];
     public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = [
+        'Quantity'
+    ];
 
     /**
      * Get the sales transaction that owns the transaction order.
