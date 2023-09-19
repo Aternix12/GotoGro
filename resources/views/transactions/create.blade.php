@@ -21,10 +21,18 @@
 
                         <div class="form-group">
                             <label for="MemberSearch">Search Member</label>
-                            <input type="text" id="MemberSearch" class="form-control">
+                            <div class="input-group">
+                                <input type="text" placeholder="Enter a First Name or Last Name" id="MemberSearch"
+                                    class="form-control">
+                                <div class="input-group-append">
+                                    <button id="clearMemberSearch" class="btn btn-outline-secondary"
+                                        type="button">Clear</button>
+                                </div>
+                            </div>
                             <!-- Container to show search results -->
                             <div id="MemberSearchResults" class="list-group" style="display:none;"></div>
                         </div>
+
 
                         <div class="form-group">
                             <label for="GroceryID">Grocery Item ID</label>
@@ -99,6 +107,18 @@
                 // Hide the search results
                 $('#MemberSearchResults').hide();
             });
+
+            // Clear button click event
+            $('#clearMemberSearch').on('click', function() {
+                // Clear the search input value
+                $('#MemberSearch').val('');
+
+                // Clear the hidden input for MemberID
+                $('#MemberID').val('');
+
+                // Hide the search results
+                $('#MemberSearchResults').hide();
+            });
         });
     </script>
 @endsection
@@ -106,52 +126,52 @@
 
 @verbatim
     <!-- </body>
-                                                                                            </html> -->
+                                                                                                            </html> -->
 
 
 
 
     <!--
-                                                                                            Testing front end with included form
-                                                                                            @extends('layouts.app')
-                                                                                            // work in progress
-                                                                                            @section('content')
+                                                                                                            Testing front end with included form
+                                                                                                            @extends('layouts.app')
+                                                                                                            // work in progress
+                                                                                                            @section('content')
         <div class="container">
-                                                                                                                                                                                                <h1>Add Transaction Order</h1>
+                                                                                                                                                                                                                                <h1>Add Transaction Order</h1>
 
-                                                                                                                                                                                                <form action="{{ route('transaction_orders.store') }}" method="POST">
-                                                                                                                                                                                                    @csrf
-                                                                                                                                                                                        // transactionID, GroceryID, Quantity
+                                                                                                                                                                                                                                <form action="{{ route('transaction_orders.store') }}" method="POST">
+                                                                                                                                                                                                                                    @csrf
+                                                                                                                                                                                                                        // transactionID, GroceryID, Quantity
 
-                                                                                                                                                                                                    // is this the right way around see line 15-17?
-                                                                                                                                                                                                    <div class="form-group">
-                                                                                                                                                                                                        <label for="MemberID">Member ID</label>
-                                                                                                                                                                                                        <select name="MemeberID" id="MemberID" class="form-control" required>
-                                                                                                                                                                                                            @foreach ($member as $memberID)
+                                                                                                                                                                                                                                    // is this the right way around see line 15-17?
+                                                                                                                                                                                                                                    <div class="form-group">
+                                                                                                                                                                                                                                        <label for="MemberID">Member ID</label>
+                                                                                                                                                                                                                                        <select name="MemeberID" id="MemberID" class="form-control" required>
+                                                                                                                                                                                                                                            @foreach ($member as $memberID)
         <option value="{{ $member->MemberID }}">{{ $member->MemberID }}</option>
         @endforeach
-                                                                                                                                                                                                        </select>
-                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                        </select>
+                                                                                                                                                                                                                                    </div>
 
-                                                                                                                                                                                                    <div class="form-group">
-                                                                                                                                                                                                        <label for="GroceryID">Grocery Item ID</label>
-                                                                                                                                                                                                        <select name="GroceryID" id="GroceryID" class="form-control" required>
-                                                                                                                                                                                                            @foreach ($item as $GroceryID)
+                                                                                                                                                                                                                                    <div class="form-group">
+                                                                                                                                                                                                                                        <label for="GroceryID">Grocery Item ID</label>
+                                                                                                                                                                                                                                        <select name="GroceryID" id="GroceryID" class="form-control" required>
+                                                                                                                                                                                                                                            @foreach ($item as $GroceryID)
         <option value="{{ $item->GroceryID }}">{{ $item->Grocery }}</option>
         @endforeach
-                                                                                                                                                                                                        </select>
-                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                        </select>
+                                                                                                                                                                                                                                    </div>
 
-                                                                                                                                                                                                    <div class="form-group">
-                                                                                                                                                                                                        <label for="Quantity">Quantity</label>
-                                                                                                                                                                                                        <input type="text" name="Quantity" id="Quantity" class="form-control" required>
-                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                    <div class="form-group">
+                                                                                                                                                                                                                                        <label for="Quantity">Quantity</label>
+                                                                                                                                                                                                                                        <input type="text" name="Quantity" id="Quantity" class="form-control" required>
+                                                                                                                                                                                                                                    </div>
 
-                                                                                                                                                                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                                                                                                                                                                </form>
-                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                                                                                                                                                                                                </form>
+                                                                                                                                                                                                                            </div>
     @endsection
 
-                                                                                            -->
+                                                                                                            -->
 
 @endverbatim
