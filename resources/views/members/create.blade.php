@@ -1,17 +1,11 @@
-<html><head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}"> 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet"
-        />
-        <title>Create Member Page</title>
-    </head>
-    <body>
+@extends('layouts.app')
+
+<!-- 
+Page is working... cannot for the life of me link stylesheet without using "app.blade.php", same issue i]with 'mylk.png'. 
+Think I am stupid? 
+Currently have tweaked with app.blade to allow this page to be formatted using my own css.. 
+Will fix later, when i get more time -->
+@section('content')
     <nav class="header">
         <h1 class="Title">Add Member</h1>
     </nav>
@@ -19,7 +13,7 @@
         <div class="LeftGrid">
             <div class="LGwrapper">
                 <a href="" id="Mylk"
-                    ><img src= "{{ asset('css/img/mylk.png') }}" alt="Mylk"
+                    ><img src="/resources/css/img/mylk.png" alt="Mylk"
                 /></a>
             </div>
         </div>
@@ -158,8 +152,6 @@
             </div>
         </div>
     </div>
-</body>
-</html>
 @endsection
 
 
