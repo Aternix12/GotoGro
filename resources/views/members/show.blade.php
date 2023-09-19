@@ -68,5 +68,35 @@
 
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
+        <div class="MidLow">
+            <div class="TransBox">
+                <p class="TransBoxText">date</p>
+                <p class="TransBoxText">item count</p>
+                <p class="TransBoxText" id="OuterShell">status</p>
+                <p class="TransBoxText">total</p>
+            </div>
+            <div class="TransBox">
+                <p class="TransBoxText">date</p>
+                <p class="TransBoxText">item count</p>
+                <p class="TransBoxText" id="OuterShell">status</p>
+                <p class="TransBoxText">total</p>
+            </div>
+            <div class="TransBox">
+                <p class="TransBoxText">date</p>
+                <p class="TransBoxText">item count</p>
+                <p class="TransBoxText" id="OuterShell">status</p>
+                <p class="TransBoxText">total</p>
+            </div>
+        </div>
+    </div>
+    <div class="RightGrid">
+        <div class="favs">
+            <p class="FaveBoxText">Member</p>
+            <p class="FaveBoxText">Member</p>
+            <p class="FaveBoxText">Member</p>
+            <p class="FaveBoxText">Member</p>
+            <p class="FaveBoxText">Member</p>
+        </div>
+    </div>
     </div>
 @endsection
