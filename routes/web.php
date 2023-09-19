@@ -18,7 +18,7 @@ use App\Http\Controllers\TransactionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::resource('members', MemberController::class);
@@ -26,3 +26,7 @@ Route::resource('members', MemberController::class);
 Route::resource('items', GroceryItemController::class);
 
 Route::resource('transactions', TransactionController::class);
+
+Route::resource('sales', SalesController::class);
+
+Route::resource('reports', ReportController::class);

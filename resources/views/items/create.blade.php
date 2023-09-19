@@ -53,16 +53,15 @@
                                 />
                             </div>
 
-                            <div class="form-group create-item">
-                                <label class="formPrompt" for="Price">Price</label>
-                                <input
-                                    type="text"
-                                    name="Price"
-                                    id="Price"
-                                    class="form-control"
-                                    required
-                                />
-                            </div>
+            <div class="form-group">
+                <label for="Price">Price</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input type="text" name="Price" id="Price" class="form-control" required>
+                </div>
+            </div>
 
                             <div class="form-group create-item">
                                 <label  class="formPrompt" for="Location">Location</label>
@@ -83,7 +82,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </body>
-</html>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+@endsection
 
