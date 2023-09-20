@@ -34,12 +34,12 @@ class MemberController extends Controller
     public function show(Member $member)
     {
         // Get Transactions
-        $transactions = $member.salesTransactions();
+        $transactions = $member->salesTransactions();
 
         // Get Top 5 Grocery Items
 
         // Get grocery items from all transactions
-        $items = []
+        $items = [];
         foreach ($transactions as $t) {
             $transactionItems = $t->transactionOrders();
 
