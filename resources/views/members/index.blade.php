@@ -32,7 +32,7 @@
                             <input type="text" name="Phone" id="Phone" /><br />
                             <label for="Email">Email:</label><br />
                             <input type="text" name="Email" id="Email" /><br />
-                            <label for="Adress">Adress</label><br />
+                            <label for="Adress">Address</label><br />
                             <input type="text" name="Adress" id="Adress" />
                             <label for="Gender">Gender:</label><br />
                             <input type="text" name="Gender" id="Gender" />
