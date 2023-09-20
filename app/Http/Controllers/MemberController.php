@@ -30,14 +30,10 @@ class MemberController extends Controller
 
     public function show(Member $member)
     {
-        return view('members.show', compact('member'));
-    }
-
-    public function edit(Member $member)
-    {
         $genders = Gender::all();
         $memberStatuses = MemberStatus::all();
-        return view('members.edit', compact('member', 'genders', 'memberStatuses'));
+        $member->DateOfBirth = \Carbon\Carbon::parse($member->DateOfBirth);
+        return view('members.show', compact('member', 'genders', 'memberStatuses'));
     }
 
     public function update(Request $request, Member $member)
@@ -50,5 +46,17 @@ class MemberController extends Controller
     {
         $member->delete();
         return redirect()->route('members.index');
+    }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('query');
+        info('Search term is: ' . $searchTerm);
+        $members = Member::where('FirstName', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('LastName', 'LIKE', '%' . $searchTerm . '%')
+            ->get();
+        info('Members found are: ' . $members);
+
+        return response()->json($members);
     }
 }

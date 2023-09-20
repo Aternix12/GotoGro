@@ -5,26 +5,47 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SalesTransaction extends Model
+class salesTransaction extends Model
 {
-    protected $table = 'sales_transactions';
+    protected $table = 'transaction_orders';
     protected $primaryKey = 'TransactionID';
+    public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = [
+        ''
+    ];
 
     /**
-     * Get the member that owns the sales transaction.
+     * Get the sales transaction that owns the transaction order.
      */
-    public function member()
+    public function salesTransaction()
+    {
+        return $this->belongsTo(SalesTransaction::class, 'TransactionID', 'TransactionID');
+    }
+
+    /**
+     * Get the member ID for the transaction order.
+     */
+    public function memberID()
     {
         return $this->belongsTo(Member::class, 'MemberID', 'MemberID');
     }
 
     /**
-     * Get the order status that owns the sales transaction.
+     * Get the order status
      */
-    public function orderStatus()
+    public function orderSatusID()
     {
         return $this->belongsTo(OrderStatus::class, 'OrderStatusID', 'OrderStatusID');
     }
+
+    /**
+    * Get date
+     */
+    public function date()
+    {
+        return $this->belongsTo(SalesTransaction::class, 'Date', 'Date');
+    }
+    
     use HasFactory;
 }
