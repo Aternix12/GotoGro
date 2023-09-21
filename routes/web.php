@@ -25,6 +25,7 @@ Route::resource('members', MemberController::class);
 Route::get('/search/members', [MemberController::class, 'search'])->name('members.search');
 
 Route::resource('items', GroceryItemController::class);
+Route::get('/search/items', [GroceryItemController::class, 'search'])->name('items.search');
 
 Route::resource('transactions', TransactionController::class);
 

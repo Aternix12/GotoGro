@@ -45,4 +45,15 @@ class GroceryItemController extends Controller
         $item->delete();
         return redirect()->route('items.index');
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('query');
+        info('Search term is: ' . $searchTerm);
+        $groceryItems = GroceryItem::where('ProductName', 'LIKE', '%' . $searchTerm . '%')
+            ->get();
+        info('Members found are: ' . $groceryItems);
+        
+        return response()->json($groceryItems);
+    }
 }

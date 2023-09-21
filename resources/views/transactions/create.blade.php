@@ -44,6 +44,35 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="GroceryItemSearch">Search Grocery Item</label>
+                            <div class="input-group">
+                                <input type="text" placeholder="Enter grocery item name" id="GroceryItemSearch"
+                                    class="form-control">
+                                <div class="input-group-append">
+                                    <button id="clearGroceryItemSearch" class="btn btn-outline-secondary"
+                                        type="button">Clear</button>
+                                </div>
+                            </div>
+                            <!-- Container to show search results -->
+                            <div id="GroceryItemSearchResults" class="list-group" style="display:none;"></div>
+
+                            <table class="table" id="GroceryItemTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Location</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="form-group">
                             <label for="Quantity">Quantity</label>
                             <input type="text" name="Quantity" id="Quantity" class="form-control" required>
                         </div>
@@ -118,6 +147,68 @@
 
                 // Hide the search results
                 $('#MemberSearchResults').hide();
+            });
+
+            $('#GroceryItemSearch').on('input', function() {
+                let query = $(this).val();
+                console.log(query)
+
+                // Only proceed if at least 2 characters have been entered
+                if (query.length >= 2) {
+                    $.ajax({
+                        url: '/search/items',
+                        method: 'GET',
+                        data: {
+                            query: query
+                        },
+                        success: function(data) {
+                            let output = '';
+                            if (data.length > 0) {
+                                data.forEach(function(item) {
+                                    output += `
+                                <a href="#" class="list-group-item list-group-item-action" data-id="${item.GroceryID}">
+                                    #${item.GroceryID} ${item.ProductName} ${item.Price}
+                                </a>`;
+                                });
+                                $('#GroceryItemSearchResults').html(output).show();
+                            } else {
+                                $('#GroceryItemSearchResults').hide();
+                            }
+                        }
+                    });
+                } else {
+                    $('#GroceryItemSearchResults').hide();
+                }
+            });
+
+            $('#GroceryItemSearchResults').on('click', 'a.list-group-item', function(e) {
+                e.preventDefault();
+                let groceryItemId = $(this).data('id');
+                let memberName = $(this).text().trim(); // Using .trim() to remove whitespace
+
+                // Add grocery item to table
+                $('#GroceryItemTable').append(`<tr><td>${groceryItemId}</td></tr>`)
+
+                // // Set the hidden input value to the selected member ID
+                // $('#GroceryItemID').val(memberId);
+
+                // // Set the search input value to the selected member name
+                // $('#GroceryItemSearch').val(memberName);
+
+                // Hide the search results
+                $('#GroceryItemSearchResults').hide();
+            });
+
+            // Clear button click event
+            $('#clearGroceryItemSearch').on('click', function() {
+                // Clear the search input value
+                $('#GroceryItemSearch').val('');
+
+                // Clear the hidden input for GroceryItemID
+                $('#GroceryItemID').val('');
+
+                // Hide the search results
+                $('#GroceryItemSearchResults').hide();
             });
         });
     </script>
