@@ -34,8 +34,9 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         TransactionOrder::create($request->all());
-        return redirect()->route('transactions.create'); // this is not finished right now. There is alot that still needs to be done here. This is the link between both memeb and transaciot table effectivlty
-    } // return redirect will return the the chosen page. 
+        return redirect()->route('transactions.create'); // this is not finished right now. 
+        //There is alot that still needs to be done here. This is the link between both memeb and transaciot table effectivlty
+    }   // return redirect will return the the chosen page. 
 
     // to view an individual transaciton. maybe if it can be done. Sprint 2 
     public function show(TransactionOrder $TransactionOrder)
@@ -63,7 +64,16 @@ class TransactionController extends Controller
         return redirect()->route('transactions.create');
     }
 
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
     // Controller for salesTransaction stuff. will work on later. currently effectivly the same as above
     // returning differnet page. All transacitions for a given day
     public function indexSales()
@@ -91,22 +101,22 @@ class TransactionController extends Controller
         return view('transactions.show', compact('TransactionOrder'));
     }
 
-    public function editSales(TransactionOrder $TransactionOrder)
+    // edit details for order status
+    public function editSales(OrderStatus $orderStatus)
     {
-        $TransactionID = Transaction::all();
-        $GroceryItemID = GroceryItem::all();
-        return view('transactions.edit', compact('GroceryID', 'TransactionID'));
+        $OrderStatusID = OrderStatus::all();
+        return view('transactions.edit', compact('OrderStatusID'));
     }
 
-    public function updateSales(Request $request, TransactionOrder $TransactionOrder)
+    public function updateSales(Request $request, Transaction $Transaction)
     {
-        $TransactionOrder->update($request->all());
-        return redirect()->route('transactions.index');
+        $Transaction->update($request->all());
+        return redirect()->route('transactions.create');
     }
     // to yeet the tuple
-    public function destroySales(TransactionOrder $TransactionOrder)
+    public function destroySales(Transaction $Transaction)
     {
-        $TransactionOrder->delete();
-        return redirect()->route('transactions.index');
+        $Transaction->delete();
+        return redirect()->route('transactions.create');
     }
 }
