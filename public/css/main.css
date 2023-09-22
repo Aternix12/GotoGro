@@ -54,7 +54,6 @@ body {
 aside {
     background-color: rgb(239, 239, 239);
     width: 200px;
-    height: 100vh;
     padding: 15px;
     box-sizing: border-box;
 }
@@ -345,8 +344,8 @@ body {
 }
 
 .form-control {
-    background-color: rgb(235, 235, 235);
-    border-radius: 0.85rem;
+    background-color: #ebebeb !important;
+    border-radius: 0.85rem !important;
 }
 
 .create-item {
@@ -409,4 +408,10 @@ img {
     justify-content: center;
     align-items: center;
     padding: 100px 200px;
+}
+
+.btn-outline-secondary {
+    border: rgb(112, 112, 112) solid 1px !important;
+    border-radius: 0.85rem !important;
+    margin-left: 5px;
 }
