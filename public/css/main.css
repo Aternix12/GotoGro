@@ -382,9 +382,8 @@ img {
 }
 
 .btn:hover {
-    background-color: rgb(167, 241, 152);
     transition: all 0.5s;
-    transform: scale(1.15);
+    transform: scale(1.03);
     cursor: pointer;
 }
 
@@ -411,7 +410,14 @@ img {
 }
 
 .btn-outline-secondary {
-    border: rgb(112, 112, 112) solid 1px !important;
+    background-color: rgb(187, 187, 187) !important;
+    border: none !important;
     border-radius: 0.85rem !important;
     margin-left: 5px;
+    color: white !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #0056b3 !important;
+    transform: scale(1.05) !important;
 }

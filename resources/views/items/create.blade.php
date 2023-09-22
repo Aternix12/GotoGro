@@ -18,12 +18,11 @@
             </div>
 
             <div class="form-group">
-                <label for="Price">Price</label>
+                <label for="Price">Price ($)</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
                     </div>
-                    <input type="text" name="Price" id="Price" class="form-control" required>
+                    <input type="text" name="Price" id="Price" class="form-control" placeholder="$" required >
                 </div>
             </div>
 
