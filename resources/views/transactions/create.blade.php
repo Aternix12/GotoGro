@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
-    <div class="content">
+    
         <div class="MiddleGrid addMember">
             <div class="MiddleGridContent">
                 <div class="container">
-                    <h1>Add Transaction Order</h1>
+                    <h1 class="Header">Add Transaction Order</h1>
 
-                    <form action="{{ route('transactions.store') }}" method="POST">
+                    <form action="{{ route('transactions.store') }}" method="POST" class="form">
                         @csrf
                         <div class="form-group">
                             <label for="MemberID">Member ID</label>
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    </div>
+    
 @endsection
 
 @section('scripts')

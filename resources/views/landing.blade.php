@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>GotoGro - MRM</h1>
+        <h1 class="LandingHeader">GotoGro - MRM</h1>
         <div class="grid-container">
             <a href="{{ route('sales.index') }}" class="grid-item">
                 <div>Sales</div>
