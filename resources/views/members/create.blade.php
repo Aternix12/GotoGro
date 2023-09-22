@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Add Member</h1>
+        <h1 class="Header">Add Member</h1>
 
-        <form action="{{ route('members.store') }}" method="POST">
+        <form action="{{ route('members.store') }}" method="POST" class="form">
             @csrf
 
             <div class="form-group">
@@ -55,7 +55,7 @@
                 <input type="email" name="Email" id="Email" class="form-control" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
 @endsection
