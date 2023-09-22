@@ -43,6 +43,11 @@
                             </select>
                         </div>
 
+                        <div id="GroceryItems">
+                            <input type="hidden" name="GroceryItems[]" value="">
+                        </div>
+                        
+
                         <div class="form-group">
                             <label for="GroceryItemSearch">Search Grocery Item</label>
                             <div class="input-group">
@@ -149,12 +154,15 @@
                 $('#MemberSearchResults').hide();
             });
 
+            returnedItems = {}
+
             $('#GroceryItemSearch').on('input', function() {
                 let query = $(this).val();
                 console.log(query)
 
                 // Only proceed if at least 2 characters have been entered
                 if (query.length >= 2) {
+                    returnedItems = {}
                     $.ajax({
                         url: '/search/items',
                         method: 'GET',
@@ -169,6 +177,7 @@
                                 <a href="#" class="list-group-item list-group-item-action" data-id="${item.GroceryID}">
                                     #${item.GroceryID} ${item.ProductName} ${item.Price}
                                 </a>`;
+                                returnedItems.(item.GroceryID) = item
                                 });
                                 $('#GroceryItemSearchResults').html(output).show();
                             } else {
@@ -187,16 +196,19 @@
                 let memberName = $(this).text().trim(); // Using .trim() to remove whitespace
 
                 // Add grocery item to table
-                $('#GroceryItemTable').append(`<tr><td>${groceryItemId}</td></tr>`)
+                item = returnedItems.groceryItemId
+                $('#GroceryItemTable').append(`<tr><td>${groceryItemId}</td><td>${item.ProductName}</td></tr>`)
 
-                // // Set the hidden input value to the selected member ID
-                // $('#GroceryItemID').val(memberId);
+                // Add hidden input for grocery items array with value of GroceryItemID
+                $('#GroceryItems').append(`<input type="hidden" name="GroceryItems[]" value="${groceryItemId}">`)
 
                 // // Set the search input value to the selected member name
                 // $('#GroceryItemSearch').val(memberName);
 
                 // Hide the search results
                 $('#GroceryItemSearchResults').hide();
+
+                returnedItems = {}
             });
 
             // Clear button click event
