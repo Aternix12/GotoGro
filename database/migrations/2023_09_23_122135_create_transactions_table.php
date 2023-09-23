@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('MemberID');
-            $table->foreign('MemberID')->references('id')->on('members');
+            $table->unsignedInteger('MemberID');
+            $table->foreign('MemberID')->references('MemberID')->on('members');
             $table->timestamps();
+            $table->decimal('TotalAmount', 8, 2);
         });
     }
 

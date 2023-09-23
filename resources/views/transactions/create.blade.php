@@ -7,15 +7,6 @@
 
                 <form action="{{ route('transactions.store') }}" method="POST" class="form">
                     @csrf
-                    <div class="form-group">
-                        <label for="MemberID">Member ID</label>
-                        <select name="MemeberID" id="MemberID" class="form-control" required>
-                            @foreach ($MemberID as $member)
-                                <option value="{{ $member->MemberID }}">{{ $member->MemberID }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
                     <input type="hidden" name="MemberID" id="MemberID" value="">
 
                     <div class="form-group">

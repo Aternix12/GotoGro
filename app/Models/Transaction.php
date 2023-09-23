@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     protected $table = 'transactions';
-    protected $primaryKey = 'TransactionID';
-    public $incrementing = false;
+    public $incrementing = true;
     public $timestamps = false;
     protected $fillable = [
-        'Date'
+        'Date',
+        'TotalAmount'
     ];
 
-// create somthing for has many transaction orders
+    // create somthing for has many transaction orders
 
     /**
      * Get the member ID for the transaction order.
@@ -34,12 +34,21 @@ class Transaction extends Model
     }
 
     /**
-    * Get date
+     * Get date
      */
     public function date()
     {
         return $this->belongsTo(SalesTransaction::class, 'Date', 'Date');
     }
-    
+
+    /**
+     * Get the transaction items for the transaction.
+     */
+    public function transactionItems()
+    {
+        return $this->hasMany(TransactionItem::class, 'TransactionID', 'id');
+        // Match the names you've used for foreign and primary keys
+    }
+
     use HasFactory;
 }

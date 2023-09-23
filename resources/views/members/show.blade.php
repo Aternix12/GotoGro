@@ -68,5 +68,12 @@
 
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
-      
+    </div>
+    @foreach ($transactions as $transaction)
+        <div>
+            Transaction ID: {{ $transaction->id }}
+            Total Amount: {{ $transaction->TotalAmount }}
+            <!-- Add more fields here as needed -->
+        </div>
+    @endforeach
 @endsection

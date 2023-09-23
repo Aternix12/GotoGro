@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('transaction_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('TransactionID');
-            $table->unsignedBigInteger('GroceryID');
+            $table->unsignedInteger('GroceryID');
             $table->integer('Quantity');
             $table->foreign('TransactionID')->references('id')->on('transactions');
-            $table->foreign('GroceryID')->references('id')->on('grocery_items');
+            $table->foreign('GroceryID')->references('GroceryID')->on('grocery_items');
             $table->timestamps();
         });
     }

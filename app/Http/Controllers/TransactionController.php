@@ -5,24 +5,15 @@ namespace App\Http\Controllers;
 // the bellow video is how I feel whist doing this right now.
 // https://www.youtube.com/watch?v=r7l0Rq9E8MY
 
-
-use App\Models\SalesTransaction;
 use App\Models\GroceryItem;
 use App\Models\Member;
 use App\Models\Transaction;
-use App\Models\TransactionOrder;
+use App\Models\TransactionItem;
 use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function index()
-    {   // resources/view/transactionOrder
-        // Hope this works
-        $TransactionOrder = TransactionOrder::all();
-        return view('transactions.index', compact('transactionOrder'));
-        // will send data to transaction order to create the order table entry
-    }
     // links to transaction create page. Creating a new transaction being the product in the order.
     public function create()
     {   // all are being sent to the page create transaction. this fills in all the data from the DB
@@ -41,10 +32,19 @@ class TransactionController extends Controller
         // Get the selected grocery items and their quantities
         $groceryItems = $request->input('groceryItems');
 
-        // Assuming you have a Transaction model and a TransactionItems model
-        // Note: This is just a sample; you'll have to adapt it to your actual database structure
+        // Initialize total amount
+        $totalAmount = 0;
+
+        // Loop to calculate the total amount first
+        foreach ($groceryItems as $groceryId => $quantity) {
+            $grocery = GroceryItem::find($groceryId); // Assuming the grocery model has a 'Price' field
+            $totalAmount += $grocery->Price * $quantity;
+        }
+
+        // Create a new transaction
         $transaction = new Transaction();
         $transaction->MemberID = $memberId;
+        $transaction->TotalAmount = $totalAmount;  // Set the total amount
         $transaction->save();
 
         // Loop through each selected grocery item and save it
@@ -60,32 +60,36 @@ class TransactionController extends Controller
         return redirect()->route('transactions.index');
     }
 
-    // to view an individual transaciton. maybe if it can be done. Sprint 2
-    public function show(TransactionOrder $TransactionOrder)
+
+    public function edit(Transaction $transaction)
     {
-        return view('transactions.show', compact('TransactionOrder'));
+        $existingTransactionItems = $transaction->transactionItems;
+        // Fetch transaction items associated with this transaction
+
+        return view('transactions.edit', [
+            'transaction' => $transaction,  // The transaction you want to edit
+            'existingTransactionItems' => $existingTransactionItems // Existing transaction items for this transaction
+        ]);
     }
 
-    //self explanitory
-    public function edit(TransactionOrder $TransactionOrder)
-    {
-        $TransactionID = Transaction::all();
-        $GroceryItemID = GroceryItem::all();
-        return view('transactions.edit', compact('GroceryID', 'TransactionID'));
-    }
 
-    public function update(Request $request, TransactionOrder $TransactionOrder)
+    public function update(Request $request, Transaction $Transaction)
     {
-        $TransactionOrder->update($request->all());
+        $Transaction->update($request->all());
         return redirect()->route('transactions.create');
     }
     // to yeet the tuple
-    public function destroy(TransactionOrder $TransactionOrder)
+    public function destroy(Transaction $Transaction)
     {
-        $TransactionOrder->delete();
+        $Transaction->delete();
         return redirect()->route('transactions.create');
     }
+}
 
+
+
+
+    /*
     // Controller for salesTransaction stuff. will work on later. currently effectivly the same as above
     // returning differnet page. All transacitions for a given day
     public function indexSales()
@@ -132,3 +136,4 @@ class TransactionController extends Controller
         return redirect()->route('transactions.create');
     }
 }
+*/
