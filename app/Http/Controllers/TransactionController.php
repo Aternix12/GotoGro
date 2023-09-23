@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-// This is a work in progress. as it stands it is a slightly edited copy of the member controller. 
+// This is a work in progress. as it stands it is a slightly edited copy of the member controller.
 // the bellow video is how I feel whist doing this right now.
 // https://www.youtube.com/watch?v=r7l0Rq9E8MY
 
@@ -18,27 +18,49 @@ class TransactionController extends Controller
 {
     public function index()
     {   // resources/view/transactionOrder
-        // Hope this works 
+        // Hope this works
         $TransactionOrder = TransactionOrder::all();
-        return view('transactions.index', compact('transactionOrder')); // will send data to transaction order to create the order table entry
+        return view('transactions.index', compact('transactionOrder'));
+        // will send data to transaction order to create the order table entry
     }
     // links to transaction create page. Creating a new transaction being the product in the order.
     public function create()
     {   // all are being sent to the page create transaction. this fills in all the data from the DB
         $GroceryID = GroceryItem::all();
         $MemberID = Member::all();
-        return view('transactions.create', compact('GroceryID', 'MemberID')); // return so it can be called in blade. All return views will do this
+        return view('transactions.create', compact('GroceryID', 'MemberID'));
+        // return so it can be called in blade. All return views will do this
     }
 
     // store and request. is the sending of information via submit. This is the entire contents of the webpage form.
     public function store(Request $request)
     {
-        TransactionOrder::create($request->all());
-        return redirect()->route('transactions.create'); // this is not finished right now. 
-        //There is alot that still needs to be done here. This is the link between both memeb and transaciot table effectivlty
-    }   // return redirect will return the the chosen page. 
+        // Get the member ID
+        $memberId = $request->input('MemberID');
 
-    // to view an individual transaciton. maybe if it can be done. Sprint 2 
+        // Get the selected grocery items and their quantities
+        $groceryItems = $request->input('groceryItems');
+
+        // Assuming you have a Transaction model and a TransactionItems model
+        // Note: This is just a sample; you'll have to adapt it to your actual database structure
+        $transaction = new Transaction();
+        $transaction->MemberID = $memberId;
+        $transaction->save();
+
+        // Loop through each selected grocery item and save it
+        foreach ($groceryItems as $groceryId => $quantity) {
+            $transactionItem = new TransactionItem();
+            $transactionItem->TransactionID = $transaction->id;
+            $transactionItem->GroceryID = $groceryId;
+            $transactionItem->Quantity = $quantity;
+            $transactionItem->save();
+        }
+
+        // Redirect or whatever you want to do next
+        return redirect()->route('transactions.index');
+    }
+
+    // to view an individual transaciton. maybe if it can be done. Sprint 2
     public function show(TransactionOrder $TransactionOrder)
     {
         return view('transactions.show', compact('TransactionOrder'));
@@ -64,27 +86,17 @@ class TransactionController extends Controller
         return redirect()->route('transactions.create');
     }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
     // Controller for salesTransaction stuff. will work on later. currently effectivly the same as above
     // returning differnet page. All transacitions for a given day
     public function indexSales()
     {   // resources/view/transaction
-        
+
         $Transaction = Transaction::all();
         return view('transactions.index', compact('salesTransactions'));
     }
 
     public function createSales()
-    {//
+    { //
         $GroceryID = GroceryItem::all();
         $MemberID = Member::all();
         return view('transactions.create', compact('GroceryID', 'MemberID'));

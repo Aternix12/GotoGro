@@ -56,6 +56,9 @@
                         <tbody>
                         </tbody>
                     </table>
+
+                    <div id="groceryItems" style="display:none;"></div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -170,6 +173,15 @@
             </tr>
         `);
 
+                // Create hidden input for the selected item and append to the form
+                let hiddenInput = $('<input>').attr({
+                    type: 'hidden',
+                    name: 'groceryItems[' + itemId + ']', // use an array-based name
+                    value: 1 // initial quantity
+                });
+
+                $('#groceryItems').append(hiddenInput);
+
                 $('#GrocerySearchResults').hide();
             });
 
@@ -178,9 +190,18 @@
                 $('#GrocerySearchResults').hide();
             });
 
-            // Delete item from the table
+            // Delete item from the table and also remove the hidden input field
             $('#selectedGroceries').on('click', '.delete-item', function() {
+                let itemId = $(this).closest('tr').data('id');
                 $(this).closest('tr').remove();
+                $('input[name="groceryItems[' + itemId + ']"]').remove();
+            });
+
+            // Listen to changes on the quantity inputs
+            $('#selectedGroceries').on('input', '.quantity-input', function() {
+                let itemId = $(this).closest('tr').data('id');
+                let newQuantity = $(this).val();
+                $('input[name="groceryItems[' + itemId + ']"]').val(newQuantity);
             });
         });
     </script>
