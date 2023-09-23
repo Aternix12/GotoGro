@@ -5,32 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TransactionOrder extends Model
+class TransactionItem extends Model
 {
-    protected $table = 'transaction_orders';
-    protected $primaryKey = ['TransactionID', 'GroceryID'];
-    public $incrementing = false;
-    public $timestamps = false;
+    use HasFactory;
+
+    protected $table = 'transaction_items';  // Define the table name
+
     protected $fillable = [
+        'TransactionID',
+        'GroceryID',
         'Quantity'
     ];
 
     /**
-     * Get the sales transaction that owns the transaction order.
+     * Get the transaction that owns the transaction item.
      */
-    public function salesTransaction()
+    public function transaction()
     {
-        return $this->belongsTo(SalesTransaction::class, 'TransactionID', 'TransactionID');
+        return $this->belongsTo(Transaction::class, 'TransactionID', 'id');
     }
 
     /**
-     * Get the grocery item that owns the transaction order.
+     * Get the grocery item that this transaction item refers to.
      */
     public function groceryItem()
     {
-        return $this->belongsTo(GroceryItem::class, 'GroceryID', 'GroceryID');
+        return $this->belongsTo(GroceryItem::class, 'GroceryID', 'id');
     }
-
-    
-    use HasFactory;
 }
