@@ -68,12 +68,24 @@
 
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
+        @foreach ($transactions as $transaction)
+            <a href="#" class="btn btn-primary rounded-pill d-block mb-2">
+                <span>
+                    <div>
+                        Date: {{ $transaction->date }}
+                    </div>
+                    <div>
+                        Number of Items: {{ $transaction->transactionItems->count() }}
+                    </div>
+                    <div>
+                        Status: {{ $transaction->orderSatusID->OrderStatus ?? 'N/A' }}
+                    </div>
+                    <div>
+                        Total Amount: {{ $transaction->TotalAmount }}
+                    </div>
+                </span>
+            </a>
+        @endforeach
+
     </div>
-    @foreach ($transactions as $transaction)
-        <div>
-            Transaction ID: {{ $transaction->id }}
-            Total Amount: {{ $transaction->TotalAmount }}
-            <!-- Add more fields here as needed -->
-        </div>
-    @endforeach
 @endsection

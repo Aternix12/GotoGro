@@ -34,14 +34,6 @@ class Transaction extends Model
     }
 
     /**
-     * Get date
-     */
-    public function date()
-    {
-        return $this->belongsTo(SalesTransaction::class, 'Date', 'Date');
-    }
-
-    /**
      * Get the transaction items for the transaction.
      */
     public function transactionItems()

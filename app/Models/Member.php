@@ -37,7 +37,7 @@ class Member extends Model
      */
     public function transactions()
     {
-        return $this->hasMany(Transaction::class, 'MemberID', 'id');
+        return $this->hasMany(Transaction::class, 'MemberID', 'MemberID');
     }
     use HasFactory;
 }
