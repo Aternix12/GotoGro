@@ -29,10 +29,12 @@
                         <td>{{ $member->Phone }}</td>
                         <td>{{ $member->Email }}</td>
                         <td>
-                            <a href="{{ route('members.show', $member->MemberID) }}" class="btn btn-success"><i
-                                    class="fas fa-edit"></i></a>
-                            <a href="{{ route('members.destroy', $member->MemberID) }}" class="btn btn-danger"><i
-                                    class="fas fa-trash"></i></a>
+                            <span>
+                                <a href="{{ route('members.show', $member->MemberID) }}" class="btn btn-success"><i
+                                        class="fas fa-edit"></i></a>
+                                <a href="{{ route('members.destroy', $member->MemberID) }}" class="btn btn-danger"><i
+                                        class="fas fa-trash"></i></a>
+                            </span>
                         </td>
                     </tr>
                 @endforeach

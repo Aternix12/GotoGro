@@ -57,7 +57,7 @@ class TransactionController extends Controller
         }
 
         // Redirect or whatever you want to do next
-        return redirect()->route('transactions.index');
+        return redirect()->route('transactions.create');
     }
 
 
