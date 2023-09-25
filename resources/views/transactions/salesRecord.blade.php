@@ -2,36 +2,42 @@
 
 @section('content')
 
-
-    <div class="header">
-        <h1 class="Title">Transaction History</h1>
-    </div>
-    <div class="content">
-        <div class="LeftGrid">
-            <div class="LGwrapper">
-                <a href="" id="Mylk"
-                    ><img src="/resources/css/img/mylk.png" alt="Mylk"
-                /></a>
-            </div>
+<div class="container sales-record-section">
+        <div class="d-flex align-items-center justify-content-between">
+          <h1>Sales Record</h1>
+          <h1 class="green-text">03/04/2023</h1>
         </div>
-        <div class="MiddleGrid">
-            <div class="MiddleGridContent">
-                <div class="container">
-                    <h1>Transaction History</h1>
-                    <div class="transaction-list">
-                        @foreach ($transactions as $transaction)
-                            <div class="transaction-item">
-                                <div class="date">{{ $transaction->date }}</div>
-                                <div class="count">{{ $transaction->count }}</div>
-                                <div class="total-amount">{{ $transaction->total_amount }}</div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+        <div class="container">
+          <div class="row">
+            <div class="col"><strong>01/05/2022</strong></div>
+            <div class="col">23 Transactions</div>
+            <div class="col">Total: $100.00</div>
+          </div>
+          <div class="row">
+            <div class="col"><strong>01/05/2022</strong></div>
+            <div class="col">23 Transactions</div>
+            <div class="col">Total: $100.00</div>
+          </div>
+          <div class="row">
+            <div class="col"><strong>01/05/2022</strong></div>
+            <div class="col">23 Transactions</div>
+            <div class="col">Total: $100.00</div>
+          </div>
+          <div class="row">
+            <div class="col"><strong>01/05/2022</strong></div>
+            <div class="col">23 Transactions</div>
+            <div class="col">Total: $100.00</div>
+          </div>
+          <div class="row">
+            <div class="col"><strong>01/05/2022</strong></div>
+            <div class="col">23 Transactions</div>
+            <div class="col">Total: $100.00</div>
+          </div>
+          <div class="row">
+            <div class="col"><strong>01/05/2022</strong></div>
+            <div class="col">23 Transactions</div>
+            <div class="col">Total: $100.00</div>
+          </div>
         </div>
-        <div class="RightGrid">
-        
-        </div>
-    </div>
+      </div>
 @endsection
