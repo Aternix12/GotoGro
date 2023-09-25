@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('MemberID');
+            $table->unsignedTinyInteger('OrderStatusID');
             $table->foreign('MemberID')->references('MemberID')->on('members');
+            $table->foreign('OrderStatusID')->references('OrderStatusID')->on('order_statuses');
             $table->timestamps();
             $table->decimal('TotalAmount', 8, 2);
+            $table->timestamp('Date')->useCurrent();
         });
     }
 

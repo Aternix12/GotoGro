@@ -12,7 +12,8 @@ class Transaction extends Model
     public $timestamps = false;
     protected $fillable = [
         'Date',
-        'TotalAmount'
+        'TotalAmount',
+        'OrderStatusID'
     ];
 
     // create somthing for has many transaction orders

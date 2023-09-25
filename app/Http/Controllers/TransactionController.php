@@ -11,6 +11,8 @@ use App\Models\Transaction;
 use App\Models\TransactionItem;
 use App\Models\OrderStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
@@ -37,14 +39,22 @@ class TransactionController extends Controller
 
         // Loop to calculate the total amount first
         foreach ($groceryItems as $groceryId => $quantity) {
-            $grocery = GroceryItem::find($groceryId); // Assuming the grocery model has a 'Price' field
+            $grocery = GroceryItem::find($groceryId);
             $totalAmount += $grocery->Price * $quantity;
         }
+
+        // Fetch the ID for the "Active" status
+        $activeStatusId = DB::table('order_statuses')->where(
+            'OrderStatus',
+            'Active'
+        )->first()->OrderStatusID;
 
         // Create a new transaction
         $transaction = new Transaction();
         $transaction->MemberID = $memberId;
         $transaction->TotalAmount = $totalAmount;  // Set the total amount
+        $transaction->OrderStatusID = $activeStatusId;  // Set the status to "Active"
+        $transaction->Date = Carbon::now();  // Set the current date
         $transaction->save();
 
         // Loop through each selected grocery item and save it

@@ -68,23 +68,23 @@
 
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
+        <div style="height: 50px;"></div>
+        <h1 class="Header">Transactions</h1>
         @foreach ($transactions as $transaction)
-            <a href="#" class="btn btn-primary rounded-pill d-block mb-2">
-                <span>
-                    <div>
-                        Date: {{ $transaction->date }}
-                    </div>
-                    <div>
-                        Number of Items: {{ $transaction->transactionItems->count() }}
-                    </div>
-                    <div>
-                        Status: {{ $transaction->orderSatusID->OrderStatus ?? 'N/A' }}
-                    </div>
-                    <div>
-                        Total Amount: {{ $transaction->TotalAmount }}
-                    </div>
-                </span>
-            </a>
+            <div class="member-transaction-container">
+                <a href="#" class="btn btn-primary rounded-pill member-transaction">
+                    <span>
+                        <div><b>{{ $transaction->Date }}</b></div>
+                        <div>{{ $transaction->transactionItems->count() }} Items</div>
+                        <div>
+                            <span class="{{ $transaction->OrderStatusID == 1 ? 'status-active' : 'status-inactive' }}">
+                                {{ $transaction->orderSatusID->OrderStatus ?? 'N/A' }}
+                            </span>
+                        </div>
+                        <div><b>{{ number_format($transaction->TotalAmount, 2) }}</b></div>
+                    </span>
+                </a>
+            </div>
         @endforeach
 
     </div>
