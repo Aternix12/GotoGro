@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('ProductName', 64);
             $table->integer('Stock')->unsigned();
             $table->float('Price');
-            $table->char('Location', 32);
+            // change to a references for the department
+            $table->integer('LocationID') ->references('LocationID')->on('location');
         });
     }
 
