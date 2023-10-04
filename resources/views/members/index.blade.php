@@ -32,8 +32,14 @@
                             <span>
                                 <a href="{{ route('members.show', $member->MemberID) }}" class="btn btn-success"><i
                                         class="fas fa-edit"></i></a>
-                                <a href="{{ route('members.destroy', $member->MemberID) }}" class="btn btn-danger"><i
-                                        class="fas fa-trash"></i></a>
+                                <form action="{{ route('members.destroy', $member->MemberID) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             </span>
                         </td>
                     </tr>
