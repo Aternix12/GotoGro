@@ -28,9 +28,23 @@
             </div>
 
             <div class="form-group">
-                <label for="Location">Location</label>
-                <input type="text" name="Location" id="Location" class="form-control" required>
+                <label for="CategoryID">Category</label>
+                <select name="CategoryID" id="CategoryID" class="form-control" required>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->CategoryID }}">{{ $category->CategoryName }}</option>
+                    @endforeach
+                </select>
             </div>
+
+            <div class="form-group">
+                <label for="DepartmentID">Department</label>
+                <select name="DepartmentID" id="DepartmentID" class="form-control" required>
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->DepartmentID }}">{{ $department->DepartmentName }}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

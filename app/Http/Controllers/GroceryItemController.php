@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\GroceryItem;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Department;
 
 class GroceryItemController extends Controller
 {
@@ -15,12 +17,21 @@ class GroceryItemController extends Controller
 
     public function create()
     {
-        return view('items.create');
+        $categories = Category::all();
+        $departments = Department::all();
+
+        return view('items.create', compact('categories', 'departments'));
     }
 
     public function store(Request $request)
     {
-        GroceryItem::create($request->all());
+        $groceryItem = new GroceryItem($request->all());
+        $category = Category::find($request->CategoryID);
+        $department = Department::find($request->DepartmentID);
+        $groceryItem->category()->associate($category);
+        $groceryItem->department()->associate($department);
+        $groceryItem->save();
+
         return redirect()->route('items.index');
     }
 
