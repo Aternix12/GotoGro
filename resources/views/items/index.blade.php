@@ -26,8 +26,15 @@
                         <td>
                             <a href="{{ route('items.show', $item->GroceryID) }}" class="btn btn-success"><i
                                     class="fas fa-edit"></i></a>
-                            <a href="{{ route('items.destroy', $item->GroceryID) }}" class="btn btn-danger"><i
-                                    class="fas fa-trash"></i></a>
+                            <form action="{{ route('items.destroy', $item->GroceryID) }}" method="POST"
+                                style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+
                         </td>
                     </tr>
                 @endforeach
