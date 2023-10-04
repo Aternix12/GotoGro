@@ -33,9 +33,27 @@
             </div>
 
             <div class="form-group">
-                <label for="Location">Location</label>
-                <input type="text" name="Location" id="Location" class="form-control" value="{{ $item->Location }}"
-                    required>
+                <label for="CategoryID">Category</label>
+                <select name="CategoryID" id="CategoryID" class="form-control" required>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->CategoryID }}"
+                            {{ $item->CategoryID == $category->CategoryID ? 'selected' : '' }}>
+                            {{ $category->CategoryName }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="DepartmentID">Department</label>
+                <select name="DepartmentID" id="DepartmentID" class="form-control" required>
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->DepartmentID }}"
+                            {{ $item->DepartmentID == $department->DepartmentID ? 'selected' : '' }}>
+                            {{ $department->DepartmentName }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>

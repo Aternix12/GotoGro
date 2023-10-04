@@ -11,7 +11,8 @@
                     <th>Product Name</th>
                     <th>Stock</th>
                     <th>Price</th>
-                    <th>Location</th>
+                    <th>Category</th>
+                    <th>Department</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -22,7 +23,8 @@
                         <td>{{ $item->ProductName }}</td>
                         <td>{{ $item->Stock }}</td>
                         <td>${{ number_format($item->Price, 2) }}</td>
-                        <td>{{ $item->Location }}</td>
+                        <td>{{ $item->category->CategoryName }}</td>
+                        <td>{{ $item->department->DepartmentName }}</td>
                         <td>
                             <a href="{{ route('items.show', $item->GroceryID) }}" class="btn btn-success"><i
                                     class="fas fa-edit"></i></a>

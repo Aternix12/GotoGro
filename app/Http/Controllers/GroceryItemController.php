@@ -37,17 +37,21 @@ class GroceryItemController extends Controller
 
     public function show(GroceryItem $item)
     {
-        return view('items.show', compact('item'));
-    }
-
-    public function edit(GroceryItem $item)
-    {
-        return view('items.edit', compact('item'));
+        $categories = Category::all();
+        $departments = Department::all();
+        return view('items.show', compact('item', 'categories', 'departments'));
     }
 
     public function update(Request $request, GroceryItem $item)
     {
         $item->update($request->all());
+
+        $category = Category::find($request->CategoryID);
+        $department = Department::find($request->DepartmentID);
+        $item->category()->associate($category);
+        $item->department()->associate($department);
+        $item->save();
+
         return redirect()->route('items.index');
     }
 
