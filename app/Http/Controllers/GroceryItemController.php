@@ -6,6 +6,7 @@ use App\Models\GroceryItem;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Department;
+use App\Rules\Price;
 
 class GroceryItemController extends Controller
 {
@@ -25,6 +26,16 @@ class GroceryItemController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'ProductName' => 'required|string|max:64',
+            'Stock' => 'required|numeric|max:9999999999',
+            'Price' => ['required', new Price],
+        ], [
+            'Stock.max' => "The stock field must not be larger than 10 digits."
+        ]);
+
+        // dd($validatedData);
+
         $groceryItem = new GroceryItem($request->all());
         $category = Category::find($request->CategoryID);
         $department = Department::find($request->DepartmentID);
