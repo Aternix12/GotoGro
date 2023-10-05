@@ -64,4 +64,20 @@ class MemberController extends Controller
 
         return response()->json($members);
     }
+    
+    // data validation rules work in progress
+    public function rules(){
+        
+    
+      return([              //allow for fancy anmes
+            'FirstName' => ['required', 'regex:/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]+$/u', 'max:32'],
+            'LastName' => ['required', 'regex:/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]+$/u', 'max:32'],
+            // I belive this should ensure somthing has been entered for gender
+            'Gender' => ['required'],
+            // WIP more to come
+            'Address' => 'required|string|max:32',
+            'Phone' => 'required|string|max:32',
+            'Email' => 'required|string|max:32',
+        ]);
+    }
 }
