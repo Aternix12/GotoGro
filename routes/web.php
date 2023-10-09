@@ -31,5 +31,6 @@ Route::get('/search/items', [GroceryItemController::class, 'search'])->name('ite
 Route::resource('transactions', TransactionController::class);
 
 Route::resource('sales', SalesRecordController::class);
+Route::get('sales/{date}', [SalesRecordController::class, 'show']);
 
 Route::resource('reports', ReportController::class);

@@ -27,7 +27,7 @@ class Transaction extends Model
     /**
      * Get the order status
      */
-    public function orderSatusID()
+    public function orderStatusID()
     {
         return $this->belongsTo(OrderStatus::class, 'OrderStatusID', 'OrderStatusID');
     }

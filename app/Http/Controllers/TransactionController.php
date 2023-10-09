@@ -133,7 +133,7 @@ class TransactionController extends Controller
 
     public function show($id)
     {
-        $transaction = Transaction::with(['transactionItems.groceryItem', 'memberID', 'orderSatusID'])->findOrFail($id);
+        $transaction = Transaction::with(['transactionItems.groceryItem', 'memberID', 'orderStatusID'])->findOrFail($id);
         $orderStatuses = OrderStatus::all();
 
         return view('transactions.show', [
