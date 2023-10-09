@@ -33,20 +33,6 @@ body {
     background-color: #ccc; /* Grey color */
 }
 
-/* Button styles */
-button.btn.btn-primary {
-    background-color: rgb(187, 187, 187);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px; /* Rounded corners */
-    cursor: pointer;
-}
-
-button.btn.btn-primary:hover {
-    background-color: #0056b3;
-}
-
 body {
     display: flex;
     flex-direction: row;
@@ -187,32 +173,32 @@ span{
 }
 
 .btn-success {
-    background-color: green;
+    background-color: green !important;
     color: white;
 }
 
 .btn-success:hover {
-    background-color: darkgreen;
+    background-color: darkgreen !important;
     color: white;
 }
 
 .btn-danger {
-    background-color: red;
+    background-color: red !important;
     color: white;
 }
 
 .btn-danger:hover {
-    background-color: darkred;
+    background-color: darkred !important;
     color: white;
 }
 
 .btn-warning {
-    background-color: yellow;
+    background-color: yellow !important;
     color: white;
 }
 
 .btn-warning:hover {
-    background-color: orange;
+    background-color: orange !important;
     color: white;
 }
 
@@ -476,4 +462,16 @@ img {
   border-radius: 10px;
   border: 2px solid rgb(215, 214, 215);
   margin-bottom: 10px;
+}
+
+.rounded-btn {
+    background-color: rgb(148, 148, 148) !important; /* initial color */
+    color: white !important; /* text color */
+    border-radius: 50px !important; /* rounded effect */
+    transition: background-color 0.3s; /* smooth transition for hover effect */
+}
+
+.rounded-btn:hover {
+    background-color: limegreen !important; /* color on hover */
+    text-decoration: none; /* remove the underline from the link on hover */
 }
