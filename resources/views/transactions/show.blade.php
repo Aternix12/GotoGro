@@ -255,9 +255,28 @@
                 let price = parseFloat($(this).closest('tr').find('td:eq(2)').text());
                 let updatedTotal = price * newQuantity;
                 $(this).closest('tr').find('td:eq(4)').text(updatedTotal.toFixed(
-                    2)); // update the row's total
+                    2));
 
                 calculateTotal();
+            });
+
+            $('form').on('submit', function(e) {
+                let memberId = $('#MemberID').val();
+                let numberOfItems = $('#selectedGroceries tbody tr').length;
+
+                if (!memberId || memberId.trim() === "") {
+                    alert("Please select a member before submitting.");
+                    e.preventDefault();
+                    return false;
+                }
+
+                if (numberOfItems <= 0) {
+                    alert("Please add at least one grocery item before submitting.");
+                    e.preventDefault();
+                    return false;
+                }
+
+                return true;
             });
         });
 

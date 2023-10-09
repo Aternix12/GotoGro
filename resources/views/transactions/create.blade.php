@@ -39,13 +39,23 @@
                     <table id="selectedGroceries" class="table">
                         <thead>
                             <tr>
+                                <th>Item ID</th>
                                 <th>Name</th>
+                                <th>Price</th>
                                 <th>Quantity</th>
+                                <th>Total</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4">Total Amount: </th>
+                                <th colspan="1"><span id="totalAmount">0.00</span></th>
+                                <th colspan="1"></th>
+                            </tr>
+                        </tfoot>
                     </table>
 
                     <div id="groceryItems" style="display:none;"></div>
@@ -134,9 +144,12 @@
                             if (data.length > 0) {
                                 data.forEach(function(item) {
                                     output += `
-                            <a href="#" class="list-group-item list-group-item-action" data-id="${item.GroceryID}">
-                                #${item.GroceryID}&emsp;${item.ProductName}
-                            </a>`;
+                                <a href="#" class="list-group-item list-group-item-action"
+                                data-id="${item.GroceryID}"
+                                data-price="${item.Price}"
+                                data-name="${item.ProductName}">
+                                    #${item.GroceryID}&emsp;${item.ProductName}
+                                </a>`;
                                 });
                                 $('#GrocerySearchResults').html(output).show();
                             } else {
@@ -152,28 +165,37 @@
             $('#GrocerySearchResults').on('click', 'a.list-group-item', function(e) {
                 e.preventDefault();
                 let itemId = $(this).data('id');
-                let itemName = $(this).text().trim();
+                let itemPrice = $(this).data('price');
+                let itemName = $(this).data('name');
 
-                // Add the selected grocery to the table
+                let existingRow = $('#selectedGroceries tbody tr[data-id="' + itemId + '"]');
+                if (existingRow.length > 0) {
+                    alert("This item has already been added. Adjust its quantity if needed.");
+                    return; // Exit the function early
+                }
+
                 $('#selectedGroceries tbody').append(`
-            <tr data-id="${itemId}">
-                <td>${itemName}</td>
-                <td><input type="number" value="1" class="form-control quantity-input"></td>
-                <td><button class="btn btn-danger delete-item">Delete</button></td>
-            </tr>
-        `);
+                    <tr data-id="${itemId}">
+                        <td>${itemId}</td>
+                        <td>${itemName}</td>
+                        <td>${parseFloat(itemPrice).toFixed(2)}</td>
+                        <td><input type="number" value="1" class="form-control quantity-input"></td>
+                        <td>${parseFloat(itemPrice).toFixed(2)}</td>
+                        <td><button class="btn btn-danger delete-item">Delete</button></td>
+                    </tr>
+                `);
 
-                // Create hidden input for the selected item and append to the form
                 let hiddenInput = $('<input>').attr({
                     type: 'hidden',
-                    name: 'groceryItems[' + itemId + ']', // use an array-based name
+                    name: 'groceryItems[' + itemId + ']',
                     value: 1 // initial quantity
                 });
 
                 $('#groceryItems').append(hiddenInput);
-
                 $('#GrocerySearchResults').hide();
+                calculateTotal();
             });
+
 
             $('#clearGrocerySearch').on('click', function() {
                 $('#GrocerySearch').val('');
@@ -185,6 +207,7 @@
                 let itemId = $(this).closest('tr').data('id');
                 $(this).closest('tr').remove();
                 $('input[name="groceryItems[' + itemId + ']"]').remove();
+                calculateTotal();
             });
 
             // Listen to changes on the quantity inputs
@@ -192,7 +215,44 @@
                 let itemId = $(this).closest('tr').data('id');
                 let newQuantity = $(this).val();
                 $('input[name="groceryItems[' + itemId + ']"]').val(newQuantity);
+
+                let price = parseFloat($(this).closest('tr').find('td:eq(2)').text());
+                let updatedTotal = price * newQuantity;
+                $(this).closest('tr').find('td:eq(4)').text(updatedTotal.toFixed(
+                    2));
+
+                calculateTotal();
             });
+
+            $('form').on('submit', function(e) {
+                let memberId = $('#MemberID').val();
+                let numberOfItems = $('#selectedGroceries tbody tr').length;
+
+                if (!memberId || memberId.trim() === "") {
+                    alert("Please select a member before submitting.");
+                    e.preventDefault();
+                    return false;
+                }
+
+                if (numberOfItems <= 0) {
+                    alert("Please add at least one grocery item before submitting.");
+                    e.preventDefault();
+                    return false;
+                }
+
+                return true;
+            });
+
+
+            function calculateTotal() {
+                let total = 0;
+                $('#selectedGroceries tbody tr').each(function() {
+                    let price = parseFloat($(this).find('td:eq(2)').text());
+                    let quantity = parseFloat($(this).find('td:eq(3) input').val());
+                    total += price * quantity;
+                });
+                $('#totalAmount').text(total.toFixed(2));
+            }
         });
     </script>
 @endsection
