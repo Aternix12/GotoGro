@@ -12,14 +12,14 @@
                 <label for="FirstName">First Name</label>
                 <input type="text" name="FirstName" id="FirstName" class="form-control" value="{{ $member->FirstName }}"
                     required>
-                    <span id="first_name_error" class ="error_message"></span>
+                <span id="first_name_error" class="error_message"></span>
             </div>
 
             <div class="form-group">
                 <label for="LastName">Last Name</label>
                 <input type="text" name="LastName" id="LastName" class="form-control" value="{{ $member->LastName }}"
                     required>
-                    <span id="last_name_error" class ="error_message"></span>
+                <span id="last_name_error" class="error_message"></span>
             </div>
 
             <div class="form-group">
@@ -37,7 +37,7 @@
                 <label for="DateOfBirth">Date of Birth</label>
                 <input type="date" name="DateOfBirth" id="DateOfBirth" class="form-control"
                     value="{{ $member->DateOfBirth->format('Y-m-d') }}" required>
-                    <span id="date_error" class ="error_message"></span>
+                <span id="date_error" class="error_message"></span>
             </div>
 
             <div class="form-group">
@@ -55,21 +55,21 @@
                 <label for="Address">Address</label>
                 <input type="text" name="Address" id="Address" class="form-control" value="{{ $member->Address }}"
                     required>
-                    <span id="adress_error" class ="error_message"></span>
+                <span id="adress_error" class="error_message"></span>
             </div>
 
             <div class="form-group">
                 <label for="Phone">Phone</label>
                 <input type="tel" name="Phone" id="Phone" class="form-control" value="{{ $member->Phone }}"
                     required>
-                    <span id="phone_error" class ="error_message"></span>
+                <span id="phone_error" class="error_message"></span>
             </div>
 
             <div class="form-group">
                 <label for="Email">Email</label>
                 <input type="email" name="Email" id="Email" class="form-control" value="{{ $member->Email }}"
                     required>
-                    <span id="email_error" class ="error_message"></span>
+                <span id="email_error" class="error_message"></span>
             </div>
 
             <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -78,7 +78,8 @@
         <h1 class="Header">Transactions</h1>
         @foreach ($transactions as $transaction)
             <div class="member-transaction-container">
-                <a href="#" class="btn btn-primary rounded-pill member-transaction">
+                <a href="{{ route('transactions.show', $transaction->id) }}"
+                    class="btn btn-primary rounded-pill member-transaction">
                     <span>
                         <div><b>{{ $transaction->Date }}</b></div>
                         <div>{{ $transaction->transactionItems->count() }} Items</div>

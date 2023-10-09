@@ -475,3 +475,8 @@ img {
     background-color: limegreen !important; /* color on hover */
     text-decoration: none; /* remove the underline from the link on hover */
 }
+
+.list-group{
+    border-radius: 0.5rem !important;
+    width: 100%;
+}

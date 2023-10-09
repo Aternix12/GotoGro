@@ -56,159 +56,6 @@
             </form>
         </div>
     </div>
-
-    <!-- <div class="container show-transaction-section">
-                <div class="d-flex align-items-center justify-content-between">
-                  <h1>Transaction</h1>
-                  <h1 class="green-text">03/04/2023</h1>
-                </div>
-
-                <div class="member-field">
-                  <label for="Member">Member</label>
-                  <input
-                    type="text"
-                    name="Member"
-                    id="Member"
-                    class="form-control"
-                    value="Maaz"
-                    required
-                    disabled
-                  />
-                </div>
-                <label>Grocery Items</label>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Price</th>
-                      <th>Quantity</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    <tr>
-                    <td>200</td>
-                      <td>maaz</td>
-                      <td>500</td>
-                      <td>3</td>
-                    </tr>
-                    <tr>
-                    <td>200</td>
-                      <td>maaz</td>
-                      <td>500</td>
-                      <td>3</td>
-                    </tr>
-                    <tr>
-                    <td>200</td>
-                      <td>maaz</td>
-                      <td>500</td>
-                      <td>3</td>
-                    </tr>
-                    <tr>
-                    <td>200</td>
-                      <td>maaz</td>
-                      <td>500</td>
-                      <td>3</td>
-                    </tr>
-
-                  </tbody>
-                </table>
-                <label>Total: $$$</label>
-              </div>
-
-              <div class="container sales-record-section">
-                <div class="d-flex align-items-center justify-content-between">
-                  <h1>Sales Record</h1>
-                  <h1 class="green-text">03/04/2023</h1>
-                </div>
-                <div class="container">
-                  <div class="row">
-                    <div class="col"><strong>01/05/2022</strong></div>
-                    <div class="col">10 Transactions</div>
-                    <div class="col">Total: $1000.00</div>
-                  </div>
-                  <div class="row">
-                    <div class="col"><strong>01/05/2022</strong></div>
-                    <div class="col">20 Transactions</div>
-                    <div class="col">Total: $2000.00</div>
-                  </div>
-                  <div class="row">
-                    <div class="col"><strong>01/05/2022</strong></div>
-                    <div class="col">30 Transactions</div>
-                    <div class="col">Total: $3000.00</div>
-                  </div>
-                  <div class="row">
-                    <div class="col"><strong>01/05/2022</strong></div>
-                    <div class="col">40 Transactions</div>
-                    <div class="col">Total: $3000.00</div>
-                  </div>
-                  <div class="row">
-                    <div class="col"><strong>01/05/2022</strong></div>
-                    <div class="col">50 Transactions</div>
-                    <div class="col">Total: $4000.00</div>
-                  </div>
-                  <div class="row">
-                    <div class="col"><strong>01/05/2022</strong></div>
-                    <div class="col">60 Transactions</div>
-                    <div class="col">Total: $5000.00</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="container sales-record-section">
-                <div class="d-flex align-items-center justify-content-between">
-                  <h1>Daily Sales Record</h1>
-                  <h1 class="green-text">03/04/2023</h1>
-                </div>
-                <div class="container">
-                  <div class="row">
-                    <div class="col">2:30 pm</div>
-                    <div class="col"><strong>Elysia</strong></div>
-                    <div class="col">10 items</div>
-                    <div class="col">
-                      <span class="badge badge-pill badge-success">Status</span>
-                    </div>
-                    <div class="col"><strong>$100.00</strong></div>
-                  </div>
-                  <div class="row">
-                    <div class="col">2:30 pm</div>
-                    <div class="col"><strong>Elysia</strong></div>
-                    <div class="col">10 items</div>
-                    <div class="col">
-                      <span class="badge badge-pill badge-success">Status</span>
-                    </div>
-                    <div class="col"><strong>$100.00</strong></div>
-                  </div>
-                  <div class="row">
-                    <div class="col">2:30 pm</div>
-                    <div class="col"><strong>Elysia</strong></div>
-                    <div class="col">10 items</div>
-                    <div class="col">
-                      <span class="badge badge-pill badge-success">Status</span>
-                    </div>
-                    <div class="col"><strong>$100.00</strong></div>
-                  </div>
-                  <div class="row">
-                    <div class="col">2:30 pm</div>
-                    <div class="col"><strong>Elysia</strong></div>
-                    <div class="col">10 items</div>
-                    <div class="col">
-                      <span class="badge badge-pill badge-success">Status</span>
-                    </div>
-                    <div class="col"><strong>$100.00</strong></div>
-                  </div>
-                  <div class="row">
-                    <div class="col">2:30 pm</div>
-                    <div class="col"><strong>Elysia</strong></div>
-                    <div class="col">10 items</div>
-                    <div class="col">
-                      <span class="badge badge-pill badge-success">Status</span>
-                    </div>
-                    <div class="col"><strong>$100.00</strong></div>
-                  </div>
-                </div>
-        </div> -->
 @endsection
 
 @section('scripts')
@@ -232,7 +79,7 @@
                                 data.forEach(function(member) {
                                     output += `
                                 <a href="#" class="list-group-item list-group-item-action" data-id="${member.MemberID}">
-                                    #${member.MemberID} ${member.FirstName} ${member.LastName} ${member.Email}
+                                    #${member.MemberID}&emsp;${member.FirstName} ${member.LastName}&emsp;${member.Email}
                                 </a>`;
                                 });
                                 $('#MemberSearchResults').html(output).show();
@@ -288,7 +135,7 @@
                                 data.forEach(function(item) {
                                     output += `
                             <a href="#" class="list-group-item list-group-item-action" data-id="${item.GroceryID}">
-                                #${item.GroceryID} ${item.ProductName}
+                                #${item.GroceryID}&emsp;${item.ProductName}
                             </a>`;
                                 });
                                 $('#GrocerySearchResults').html(output).show();

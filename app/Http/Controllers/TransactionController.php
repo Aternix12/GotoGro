@@ -94,4 +94,15 @@ class TransactionController extends Controller
         $Transaction->delete();
         return redirect()->route('transactions.create');
     }
+
+    public function show($id)
+    {
+        $transaction = Transaction::with(['transactionItems.groceryItem', 'memberID', 'orderSatusID'])->findOrFail($id);
+        $orderStatuses = OrderStatus::all();
+
+        return view('transactions.show', [
+            'transaction' => $transaction,
+            'orderStatuses' => $orderStatuses
+        ]);
+    }
 }
