@@ -16,8 +16,6 @@ class Transaction extends Model
         'OrderStatusID'
     ];
 
-    // create somthing for has many transaction orders
-
     /**
      * Get the member ID for the transaction order.
      */
@@ -29,7 +27,7 @@ class Transaction extends Model
     /**
      * Get the order status
      */
-    public function orderSatusID()
+    public function orderStatusID()
     {
         return $this->belongsTo(OrderStatus::class, 'OrderStatusID', 'OrderStatusID');
     }
@@ -40,7 +38,6 @@ class Transaction extends Model
     public function transactionItems()
     {
         return $this->hasMany(TransactionItem::class, 'TransactionID', 'id');
-        // Match the names you've used for foreign and primary keys
     }
 
     use HasFactory;

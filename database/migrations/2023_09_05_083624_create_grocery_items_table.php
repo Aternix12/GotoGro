@@ -16,8 +16,12 @@ return new class extends Migration
             $table->string('ProductName', 64);
             $table->integer('Stock')->unsigned();
             $table->float('Price');
-            // change to a references for the department
-            $table->integer('LocationID') ->references('LocationID')->on('location');
+
+            $table->unsignedInteger('CategoryID');
+            $table->foreign('CategoryID')->references('CategoryID')->on('categories');
+
+            $table->unsignedInteger('DepartmentID');
+            $table->foreign('DepartmentID')->references('DepartmentID')->on('departments');
         });
     }
 

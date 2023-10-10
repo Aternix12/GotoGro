@@ -5,9 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\GroceryItemController;
 use App\Http\Controllers\TransactionController;
+<<<<<<< HEAD
 use App\Http\Controllers\ReportController;
 
 
+=======
+use App\Http\Controllers\SalesRecordController;
+>>>>>>> 232d366b025a90de95cdf2ab0c478d12cf6d40aa
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +36,8 @@ Route::get('/search/items', [GroceryItemController::class, 'search'])->name('ite
 
 Route::resource('transactions', TransactionController::class);
 
-Route::resource('sales', SalesController::class);
+Route::resource('sales', SalesRecordController::class);
+Route::get('sales/{date}', [SalesRecordController::class, 'show']);
 
 Route::resource('reports', ReportController::class);
 

@@ -30,6 +30,6 @@ class TransactionItem extends Model
      */
     public function groceryItem()
     {
-        return $this->belongsTo(GroceryItem::class, 'GroceryID', 'id');
+        return $this->belongsTo(GroceryItem::class, 'GroceryID', 'GroceryID');
     }
 }

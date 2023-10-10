@@ -74,76 +74,71 @@ class TransactionController extends Controller
     public function edit(Transaction $transaction)
     {
         $existingTransactionItems = $transaction->transactionItems;
-        // Fetch transaction items associated with this transaction
-
         return view('transactions.edit', [
-            'transaction' => $transaction,  // The transaction you want to edit
-            'existingTransactionItems' => $existingTransactionItems // Existing transaction items for this transaction
+            'transaction' => $transaction,
+            'existingTransactionItems' => $existingTransactionItems
         ]);
     }
 
 
-    public function update(Request $request, Transaction $Transaction)
+    public function update(Request $request, Transaction $transaction)
     {
-        $Transaction->update($request->all());
-        return redirect()->route('transactions.create');
+        // Update the member ID
+        $transaction->MemberID = $request->input('MemberID');
+
+        // Get the selected grocery items and their quantities
+        $groceryItems = $request->input('groceryItems');
+
+        // Initialize total amount
+        $totalAmount = 0;
+
+        // Loop to calculate the total amount first
+        foreach ($groceryItems as $groceryId => $quantity) {
+            $grocery = GroceryItem::find($groceryId);
+            $totalAmount += $grocery->Price * $quantity;
+        }
+
+        $transaction->TotalAmount = $totalAmount;
+
+        // Remove existing associated items
+        $transaction->transactionItems()->delete();
+
+        // Loop through each selected grocery item and save it
+        foreach ($groceryItems as $groceryId => $quantity) {
+            $transactionItem = new TransactionItem();
+            $transactionItem->TransactionID = $transaction->id;
+            $transactionItem->GroceryID = $groceryId;
+            $transactionItem->Quantity = $quantity;
+            $transactionItem->save();
+        }
+
+        // If you want to update the order status as well (if provided in the request)
+        if ($request->has('OrderStatusID')) {
+            $transaction->OrderStatusID = $request->input('OrderStatusID');
+        }
+
+        // Finally, save the updated transaction
+        $transaction->save();
+
+        // Redirect or whatever you want to do next
+        return redirect()->route('transactions.show', $transaction->id);
     }
-    // to yeet the tuple
+
+
     public function destroy(Transaction $Transaction)
     {
         $Transaction->delete();
         return redirect()->route('transactions.create');
     }
-}
 
-
-
-
-    /*
-    // Controller for salesTransaction stuff. will work on later. currently effectivly the same as above
-    // returning differnet page. All transacitions for a given day
-    public function indexSales()
-    {   // resources/view/transaction
-
-        $Transaction = Transaction::all();
-        return view('transactions.index', compact('salesTransactions'));
-    }
-
-    public function createSales()
-    { //
-        $GroceryID = GroceryItem::all();
-        $MemberID = Member::all();
-        return view('transactions.create', compact('GroceryID', 'MemberID'));
-    }
-
-    public function storeSales(Request $request)
+    public function show($id)
     {
-        TransactionOrder::create($request->all());
-        return redirect()->route('transactions.index');
-    }
+        $transaction = Transaction::with(['transactionItems.groceryItem', 'memberID', 'orderStatusID'])->findOrFail($id);
+        $orderStatuses = OrderStatus::all();
 
-    public function showSales(TransactionOrder $TransactionOrder)
-    {
-        return view('transactions.show', compact('TransactionOrder'));
-    }
-
-    // edit details for order status
-    public function editSales(OrderStatus $orderStatus)
-    {
-        $OrderStatusID = OrderStatus::all();
-        return view('transactions.edit', compact('OrderStatusID'));
-    }
-
-    public function updateSales(Request $request, Transaction $Transaction)
-    {
-        $Transaction->update($request->all());
-        return redirect()->route('transactions.create');
-    }
-    // to yeet the tuple
-    public function destroySales(Transaction $Transaction)
-    {
-        $Transaction->delete();
-        return redirect()->route('transactions.create');
+        return view('transactions.show', [
+            'transaction' => $transaction,
+            'orderStatuses' => $orderStatuses
+        ]);
     }
 }
-*/

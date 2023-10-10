@@ -11,8 +11,17 @@ class GroceryItem extends Model
     protected $primaryKey = 'GroceryID';
     public $timestamps = false;
     protected $fillable = [
-        'ProductName', 'Stock', 'Price', 'Location'
+        'ProductName', 'Stock', 'Price', 'CategoryID', 'DepartmentID'
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'CategoryID');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'DepartmentID');
+    }
     use HasFactory;
 }

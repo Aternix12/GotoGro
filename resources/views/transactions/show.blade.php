@@ -1,69 +1,102 @@
 @extends('layouts.app')
+
 @section('content')
-    <div class="MiddleGrid addMember">
-        <div class="MiddleGridContent">
-            <div class="container">
-                <h1 class="Header">Add Transaction Order</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Transaction Details</h1>
+            </div>
+            <div class="col-md-4 text-right">
+                <h5>Date: {{ $transaction->Date }}</h5>
+            </div>
+        </div>
+        <div class="form-group">
+            <h3>Member</h3>
+            <div class="input-group">
+                <input type="text" placeholder="Enter a First Name or Last Name" id="MemberSearch" class="form-control"
+                    value="{{ $transaction->memberID->FirstName }} {{ $transaction->memberID->LastName }}">
+                <div class="input-group-append">
+                    <button id="clearMemberSearch" class="btn btn-outline-secondary" type="button">Clear</button>
+                </div>
+            </div>
+            <div id="MemberSearchResults" class="list-group" style="display:none;"></div>
+        </div>
 
-                <form action="{{ route('transactions.store') }}" method="POST" class="form">
+        <h3>Grocery Items</h3>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" placeholder="Enter Grocery Name" id="GrocerySearch" class="form-control">
+                <div class="input-group-append">
+                    <button id="clearGrocerySearch" class="btn btn-outline-secondary" type="button">Clear</button>
+                </div>
+            </div>
+            <div id="GrocerySearchResults" class="list-group" style="display:none;"></div>
+        </div>
+
+        <table class="table table-bordered" id="selectedGroceries">
+            <thead>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @php $sum = 0; @endphp
+                @foreach ($transaction->transactionItems as $item)
+                    <tr data-id="{{ $item->groceryItem->GroceryID }}">
+                        <td>{{ $item->groceryItem->GroceryID }}</td>
+                        <td>{{ $item->groceryItem->ProductName }}</td>
+                        <td>{{ number_format($item->groceryItem->Price, 2) }}</td>
+                        <td><input type="number" value="{{ $item->Quantity }}" class="form-control quantity-input"></td>
+                        <td>{{ number_format($item->groceryItem->Price * $item->Quantity, 2) }}</td>
+                        <td><button class="btn btn-danger delete-item">Delete</button></td>
+                    </tr>
+
+                    @php $sum += $item->groceryItem->Price * $item->Quantity; @endphp
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">Total Amount: </th>
+                    <th colspan="1"><span id="totalAmount">{{ number_format($sum, 2) }}</span>
+                    </th>
+                    <th colspan="1">
+                </tr>
+            </tfoot>
+
+        </table>
+
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <form action="{{ route('transactions.update', $transaction->id) }}" method="POST">
                     @csrf
-                    <input type="hidden" name="MemberID" id="MemberID" value="">
-
-                    <div class="form-group">
-                        <label for="MemberSearch">Search Member</label>
-                        <div class="input-group">
-                            <input type="text" placeholder="Enter a First Name or Last Name" id="MemberSearch"
-                                class="form-control">
-                            <div class="input-group-append">
-                                <button id="clearMemberSearch" class="btn btn-outline-secondary"
-                                    type="button">Clear</button>
-                            </div>
-                        </div>
-                        <!-- Container to show search results -->
-                        <div id="MemberSearchResults" class="list-group" style="display:none;"></div>
+                    @method('PUT')
+                    <input type="hidden" name="MemberID" id="MemberID" value="{{ $transaction->memberID->MemberID }}">
+                    <div id="groceryItems">
+                        @foreach ($transaction->transactionItems as $item)
+                            <input type="hidden" name="groceryItems[{{ $item->groceryItem->GroceryID }}]"
+                                value="{{ $item->Quantity }}">
+                        @endforeach
                     </div>
-
                     <div class="form-group">
-                        <label for="GrocerySearch">Search Grocery</label>
-                        <div class="input-group">
-                            <input type="text" placeholder="Enter Grocery Name" id="GrocerySearch" class="form-control">
-                            <div class="input-group-append">
-                                <button id="clearGrocerySearch" class="btn btn-outline-secondary"
-                                    type="button">Clear</button>
-                            </div>
-                        </div>
-                        <div id="GrocerySearchResults" class="list-group" style="display:none;"></div>
+                        <h3>Order Status</h3>
+                        <select name="OrderStatusID" id="OrderStatusID" class="form-control">
+                            @foreach ($orderStatuses as $status)
+                                <option value="{{ $status->OrderStatusID }}"
+                                    {{ $transaction->OrderStatusID == $status->OrderStatusID ? 'selected' : '' }}>
+                                    {{ $status->OrderStatus }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
-
-                    <h2>Selected Grocery Items</h2>
-                    <table id="selectedGroceries" class="table">
-                        <thead>
-                            <tr>
-                                <th>Item ID</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th colspan="4">Total Amount: </th>
-                                <th colspan="1"><span id="totalAmount">0.00</span></th>
-                                <th colspan="1"></th>
-                            </tr>
-                        </tfoot>
-                    </table>
-
-                    <div id="groceryItems" style="display:none;"></div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Update Transaction</button>
                 </form>
             </div>
-            </form>
         </div>
     </div>
 @endsection
@@ -144,12 +177,11 @@
                             if (data.length > 0) {
                                 data.forEach(function(item) {
                                     output += `
-                                <a href="#" class="list-group-item list-group-item-action"
-                                data-id="${item.GroceryID}"
-                                data-price="${item.Price}"
-                                data-name="${item.ProductName}">
-                                    #${item.GroceryID}&emsp;${item.ProductName}
-                                </a>`;
+                                        <a href="#" class="list-group-item list-group-item-action"
+                                        data-id="${item.GroceryID}"
+                                        data-price="${item.Price}" data-name=${item.ProductName}>
+                                        #${item.GroceryID}&emsp;${item.ProductName}
+                                        </a>`;
                                 });
                                 $('#GrocerySearchResults').html(output).show();
                             } else {
@@ -163,6 +195,7 @@
             });
 
             $('#GrocerySearchResults').on('click', 'a.list-group-item', function(e) {
+
                 e.preventDefault();
                 let itemId = $(this).data('id');
                 let itemPrice = $(this).data('price');
@@ -174,6 +207,7 @@
                     return; // Exit the function early
                 }
 
+                // Add the selected grocery to the table
                 $('#selectedGroceries tbody').append(`
                     <tr data-id="${itemId}">
                         <td>${itemId}</td>
@@ -185,17 +219,19 @@
                     </tr>
                 `);
 
+                // Create hidden input for the selected item and append to the form
                 let hiddenInput = $('<input>').attr({
                     type: 'hidden',
-                    name: 'groceryItems[' + itemId + ']',
+                    name: 'groceryItems[' + itemId + ']', // use an array-based name
                     value: 1 // initial quantity
                 });
 
                 $('#groceryItems').append(hiddenInput);
+
                 $('#GrocerySearchResults').hide();
+
                 calculateTotal();
             });
-
 
             $('#clearGrocerySearch').on('click', function() {
                 $('#GrocerySearch').val('');
@@ -242,17 +278,16 @@
 
                 return true;
             });
-
-
-            function calculateTotal() {
-                let total = 0;
-                $('#selectedGroceries tbody tr').each(function() {
-                    let price = parseFloat($(this).find('td:eq(2)').text());
-                    let quantity = parseFloat($(this).find('td:eq(3) input').val());
-                    total += price * quantity;
-                });
-                $('#totalAmount').text(total.toFixed(2));
-            }
         });
+
+        function calculateTotal() {
+            let total = 0;
+            $('#selectedGroceries tbody tr').each(function() {
+                let price = parseFloat($(this).find('td:eq(2)').text());
+                let quantity = parseFloat($(this).find('td:eq(3) input').val());
+                total += price * quantity;
+            });
+            $('#totalAmount').text(total.toFixed(2));
+        }
     </script>
 @endsection
