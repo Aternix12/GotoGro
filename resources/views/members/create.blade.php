@@ -71,7 +71,7 @@
         //for the display of validation errors
         function errorMsg(errors){ 
             Object.keys(errors).forEach(fieldName =>{
-                const errorContainer = document.getElementById(`${name}_error`);
+                const errorContainer = document.getElementById(`${fieldName}_error`);
                 if(errorContainer){
                     errorContainer.innerText = errors[fieldName][0];
                 }
