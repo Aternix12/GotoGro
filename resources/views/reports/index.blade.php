@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+{{--Need to add references to DB through these. Just dummy fillings atm --}}
     <div class="space-div2"></div>
     <div class="container-gen">
         <div class="header-wrapper">
@@ -98,61 +100,60 @@
                 </div>
                 <div class="productItem">
                 <p class="items">Test</p>
-                   <p class="items">Low</p>
+                   <p class="items">High</p>
                     
                 </div>
                 <div class="productItem">
                 <p class="items">Test</p>
-                   <p class="items">Low</p>
+                <p class="items">Low</p>
                     
                 </div>
             </div>
             <div class="center-Grid">
                 <div class="productItem">
                 <p class="items">Test</p>
-                   <p class="items">Low</p>
+                <img src="{{ asset('img/red.png') }}" alt="red" class="red">                    
+                </div>
+                <div class="productItem">
+                <p class="items">Test</p>
+                <img src="{{ asset('img/yellow.png') }}" alt="yellow" class="yellow">                    
+
                     
                 </div>
                 <div class="productItem">
                 <p class="items">Test</p>
-                <p class="items">Low</p>
-                    
-                </div>
-                <div class="productItem">
-                <p class="items">Test</p>
-                   <p class="items">Low</p>
+                <img src="{{ asset('img/green.png') }}" alt="red" class="green">                    
+
                     
                 </div>
             </div>
             <div class="right-Grid">
-                <h3 class = "status">Med</h3>
+                <h3 class = "status yellow">Med</h3>
                 <div class="productItem">
                 <p class="items">Test</p>
-                   <p class="items">Low</p>
+                   
                     
                 </div>
-                <h3 class = "status">High</h3>
+                <h3 class = "status green">High</h3>
                 <div class="productItem">
                 <p class="items">Test</p>
-                   <p class="items">Low</p>
                     
                 </div>
-                <h3 class = "status">Low</h3>
+                <h3 class = "status red">Low</h3>
                 <div class="productItem">
 
                 <p class="items">Test</p>
-                <p class="items">Low</p>
                     
                 </div>
             </div>
         </div>
-
-
-
+        <div class="buttonDiv">
+            <button id="gen-button">
+                    Generate
+            </button>
         </div>
     </div>
+</div>
 
-    <button id="gen-button">
-            Generate
-    </button>
+
 @endsection

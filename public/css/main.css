@@ -543,10 +543,20 @@ img {
 }
 
 #gen-button {
-    margin-top: 30px;
-    margin-left: 350px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
     border: rgb(148, 148, 148) solid 2px;
     border-radius: 6px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
 }
 
 #gen-button:hover {
@@ -686,7 +696,18 @@ img {
 
 .status {
     font-size: small;
-    color: greenyellow;
     display: flex;
     justify-content: center;
+}
+
+.yellow {
+    color: rgb(177, 177, 52);
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
 }
