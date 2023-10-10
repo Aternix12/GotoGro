@@ -43,7 +43,7 @@ aside {
     width: 200px;
     padding: 15px;
     box-sizing: border-box;
-    position: fixed!important;
+    position: fixed !important;
     top: 0 !important;
     bottom: 0 !important;
 }
@@ -57,7 +57,7 @@ main {
     padding: 15px;
 }
 
-span{
+span {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -417,7 +417,6 @@ img {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-
 }
 
 .member-transaction {
@@ -443,25 +442,100 @@ img {
 }
 
 .show-transaction-section tr {
-  background: #ebebeb !important;
+    background: #ebebeb !important;
 }
 .green-text {
-  color: green;
+    color: green;
 }
 .member-field input {
-  width: 40%;
+    width: 40%;
 }
 
 .member-field {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .sales-record-section .row {
-  background: #ebebeb !important;
-  padding: 30px 0;
-  border-radius: 10px;
-  border: 2px solid rgb(215, 214, 215);
-  margin-bottom: 10px;
+    background: #ebebeb !important;
+    padding: 30px 0;
+    border-radius: 10px;
+    border: 2px solid rgb(215, 214, 215);
+    margin-bottom: 10px;
+}
+
+/*css for generate report page*/
+
+.container-gen {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-left: 350px;
+    flex-direction: column;
+    max-width: 900px;
+}
+
+.header-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#date {
+    width: 100px;
+}
+
+.form-group-gen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(235, 235, 235);
+    padding: 25px;
+    border: rgb(148, 148, 148) solid 1.3px;
+    border-radius: 5px;
+    max-width: 900px;
+}
+
+.form-group-gen:hover {
+    transition: all 0.5s;
+    transform: scale(1.05);
+}
+
+.internal-group {
+    align-items: center;
+    display: flex;
+    margin: 0 !important;
+    text-decoration: none;
+    width: 120px;
+    justify-content: center;
+}
+
+#gen-head {
+    font-size: 1.5em;
+}
+
+.space-div {
+    height: 45px;
+}
+
+.space-div2 {
+    height: 75px;
+}
+
+.report-blocks {
+    text-decoration: none;
+    color: inherit;
+    margin-top: 35px;
+}
+
+.report-blocks:hover {
+    text-decoration: none;
+}
+
+#gen-button {
+    margin-top: 30px;
+    margin-left: 350px;
 }
 
 .rounded-btn {
