@@ -9,7 +9,7 @@
         <h1 class="gen-report">Generate report</h1>
         <form action="">
             <input type="date" id = "dateReport">
-        </form>
+        
         </div>
         <div class="space-div"></div>
         <a href="{{ route('members.index') }}" class= "report-blocks">
@@ -154,6 +154,7 @@
         </div>
     </div>
 </div>
+</form>
 
 
 @endsection
