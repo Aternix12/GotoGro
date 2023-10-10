@@ -4,6 +4,21 @@
     <div class="container">
         <h1>All Grocery Items</h1>
         <a href="{{ route('items.create') }}" class="btn rounded-btn mb-3">Add Grocery Item</a>
+        @isset($newGroceryItem)
+            <div class="alert alert-success" role="alert" style="position: unset;">
+                <p>
+                    <strong>Success: </strong>
+                    {{ $newGroceryItem->ProductName }} was successfully created! 
+                    <a href="{{ route('items.show', $newGroceryItem->GroceryID) }}" class="btn btn-primary btn-sm">Edit</a>
+                </p>
+                <p>
+                    <span class="badge badge-secondary">Stock: {{ $newGroceryItem->Stock }}</span>
+                    <span class="badge badge-secondary">Price: ${{ number_format($newGroceryItem->Price, 2) }}</span>
+                    <span class="badge badge-secondary">Category: {{ $newGroceryItem->category->CategoryName }}</span>
+                    <span class="badge badge-secondary">Department: {{ $newGroceryItem->department->DepartmentName }}</span>
+                </p>
+            </div>
+        @endisset
         <table class="table">
             <thead>
                 <tr>

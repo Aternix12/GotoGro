@@ -13,7 +13,8 @@ class GroceryItemController extends Controller
     public function index()
     {
         $groceryItems = GroceryItem::all();
-        return view('items.index', compact('groceryItems'));
+        $newGroceryItem = GroceryItem::find(request('groceryItem'));
+        return view('items.index', compact('groceryItems', 'newGroceryItem'));
     }
 
     public function create()
@@ -43,7 +44,7 @@ class GroceryItemController extends Controller
         $groceryItem->department()->associate($department);
         $groceryItem->save();
 
-        return redirect()->route('items.index');
+        return redirect()->route('items.index', ['groceryItem' => $groceryItem->GroceryID]);
     }
 
     public function show(GroceryItem $item)
