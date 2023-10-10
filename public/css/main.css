@@ -500,6 +500,7 @@ img {
 .form-group-gen:hover {
     transition: all 0.5s;
     transform: scale(1.05);
+    color: black;
 }
 
 .internal-group {
@@ -513,6 +514,14 @@ img {
 
 #gen-head {
     font-size: 1.5em;
+    color: rgb(112, 112, 112);
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.gen-report {
+    color: rgb(112, 112, 112);
 }
 
 .space-div {
@@ -526,7 +535,7 @@ img {
 .report-blocks {
     text-decoration: none;
     color: inherit;
-    margin-top: 35px;
+    margin-top: 55px;
 }
 
 .report-blocks:hover {
@@ -536,6 +545,14 @@ img {
 #gen-button {
     margin-top: 30px;
     margin-left: 350px;
+    border: rgb(148, 148, 148) solid 2px;
+    border-radius: 6px;
+}
+
+#gen-button:hover {
+    transition: all ease 0.3s;
+    transform: scale(1.12);
+    background-color: #007bff;
 }
 
 .rounded-btn {
@@ -550,7 +567,126 @@ img {
     text-decoration: none; /* remove the underline from the link on hover */
 }
 
-.list-group{
+.list-group {
     border-radius: 0.5rem !important;
     width: 100%;
+}
+
+.reportSectionTopWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 40px;
+}
+
+.reportSectionTop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border: rgb(148, 148, 148) solid 2px;
+    border-radius: 6px;
+    margin: 0 20px 0 20px;
+    background-color: rgb(228, 228, 228);
+}
+
+.reportData {
+    margin-bottom: 0 !important;
+}
+
+#dateReport {
+    background-color: rgb(228, 228, 228);
+    padding: 15px;
+    top: 50%;
+    left: 50%;
+    /*font-family: "Roboto Mono", monospace;*/
+    color: black;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-sizing: unset !important;
+}
+
+.reportSectionLowerWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.reportData2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 130px;
+    padding-bottom: 130px;
+    padding-left: 80px;
+    padding-right: 80px;
+    border: rgb(148, 148, 148) solid 2px;
+    border-radius: 6px;
+    margin: 0 20px 0 20px;
+    background-color: rgb(228, 228, 228);
+}
+
+.GotoGro {
+    margin-top: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(112, 112, 112);
+}
+
+.trendingGrid {
+    display: flex;
+    justify-content: center;
+}
+
+.left-Grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.center-Grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-Grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.productItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+    border: rgb(148, 148, 148) solid 2px;
+    border-radius: 6px;
+    margin: 0 20px 0 20px;
+    background-color: rgb(228, 228, 228);
+    margin-top: 10px;
+    max-width: 900px;
+}
+
+.items {
+    margin: 0 !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status {
+    font-size: small;
+    color: greenyellow;
+    display: flex;
+    justify-content: center;
 }
