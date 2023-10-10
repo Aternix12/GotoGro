@@ -8,7 +8,7 @@
             <div class="alert alert-success" role="alert" style="position: unset;">
                 <p>
                     <strong>Success: </strong>
-                    {{ $newGroceryItem->ProductName }} was successfully created! 
+                    {{ $newGroceryItem->ProductName }} was created! 
                     <a href="{{ route('items.show', $newGroceryItem->GroceryID) }}" class="btn btn-primary btn-sm">Edit</a>
                 </p>
                 <p>
