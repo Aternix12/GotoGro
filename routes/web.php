@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\GroceryItemController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ReportController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +35,5 @@ Route::resource('transactions', TransactionController::class);
 Route::resource('sales', SalesController::class);
 
 Route::resource('reports', ReportController::class);
+
+Route::get('/index', [ReportController::class, 'index']);
