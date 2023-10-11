@@ -9,16 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('sales_transactions', function (Blueprint $table) {
-            $table->increments('TransactionID');
-            $table->integer('MemberID')->unsigned();
-            $table->date('TransactionDate');
-            $table->tinyInteger('OrderStatusID')->unsigned();
-
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('MemberID');
+            $table->unsignedTinyInteger('OrderStatusID');
             $table->foreign('MemberID')->references('MemberID')->on('members');
             $table->foreign('OrderStatusID')->references('OrderStatusID')->on('order_statuses');
+            $table->timestamps();
+            $table->decimal('TotalAmount', 8, 2);
+            $table->timestamp('Date')->useCurrent();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales_transactions');
+        Schema::dropIfExists('transactions');
     }
 };

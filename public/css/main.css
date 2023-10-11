@@ -18,6 +18,7 @@ body {
     margin: 20px;
     padding: 20px;
     background-color: white;
+    margin-left: 25% + 200px !important;
 }
 
 /* Sidebar styles */
@@ -26,24 +27,10 @@ body {
 .sidebar {
     position: fixed;
     top: 0;
-    left: 0;
-    height: 100%;
+    bottom: 0;
+    min-height: 100vh;
     width: 200px;
     background-color: #ccc; /* Grey color */
-}
-
-/* Button styles */
-button.btn.btn-primary {
-    background-color: rgb(187, 187, 187);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px; /* Rounded corners */
-    cursor: pointer;
-}
-
-button.btn.btn-primary:hover {
-    background-color: #0056b3;
 }
 
 body {
@@ -56,6 +43,9 @@ aside {
     width: 200px;
     padding: 15px;
     box-sizing: border-box;
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
 }
 
 .memCreate {
@@ -65,6 +55,12 @@ aside {
 main {
     flex: 1;
     padding: 15px;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .img-full-width {
@@ -93,7 +89,7 @@ main {
 /* Github icon styles */
 .github-icon {
     position: absolute;
-    width: 15%;
+    width: 45%;
     bottom: 10px;
     left: 10px;
     /* Add other icon styles here */
@@ -177,32 +173,32 @@ main {
 }
 
 .btn-success {
-    background-color: green;
+    background-color: green !important;
     color: white;
 }
 
 .btn-success:hover {
-    background-color: darkgreen;
+    background-color: darkgreen !important;
     color: white;
 }
 
 .btn-danger {
-    background-color: red;
+    background-color: red !important;
     color: white;
 }
 
 .btn-danger:hover {
-    background-color: darkred;
+    background-color: darkred !important;
     color: white;
 }
 
 .btn-warning {
-    background-color: yellow;
+    background-color: yellow !important;
     color: white;
 }
 
 .btn-warning:hover {
-    background-color: orange;
+    background-color: orange !important;
     color: white;
 }
 
@@ -416,26 +412,302 @@ img {
     margin-left: 5px;
 }
 
-/* Maaz css */
+.member-transaction-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.member-transaction {
+    flex-direction: column;
+    width: 50%;
+    color: black !important;
+    background-color: lightgray !important;
+    border: 1px solid lightgray !important;
+}
+
+.status-active {
+    background-color: lightgreen;
+    border-radius: 12px;
+    padding: 5px;
+    color: white;
+}
+
+.status-inactive {
+    background-color: lightcoral;
+    border-radius: 12px;
+    padding: 5px;
+    color: white;
+}
 
 .show-transaction-section tr {
     background: #ebebeb !important;
-  }
-  .green-text {
+}
+.green-text {
     color: green;
-  }
-  .member-field input {
+}
+.member-field input {
     width: 40%;
-  }
-  
-  .member-field {
+}
+
+.member-field {
     margin-bottom: 40px;
-  }
-  
-  .sales-record-section .row {
+}
+
+.sales-record-section .row {
     background: #ebebeb !important;
     padding: 30px 0;
     border-radius: 10px;
     border: 2px solid rgb(215, 214, 215);
     margin-bottom: 10px;
-  }
+}
+
+/*css for generate report page*/
+
+.container-gen {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-left: 350px;
+    flex-direction: column;
+    max-width: 900px;
+}
+
+.header-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#date {
+    width: 100px;
+}
+
+.form-group-gen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(235, 235, 235);
+    padding: 25px;
+    border: rgb(148, 148, 148) solid 1.3px;
+    border-radius: 5px;
+    max-width: 900px;
+}
+
+.form-group-gen:hover {
+    transition: all 0.5s;
+    transform: scale(1.05);
+    color: black;
+}
+
+.internal-group {
+    align-items: center;
+    display: flex;
+    margin: 0 !important;
+    text-decoration: none;
+    width: 120px;
+    justify-content: center;
+}
+
+#gen-head {
+    font-size: 1.5em;
+    color: rgb(112, 112, 112);
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.gen-report {
+    color: rgb(112, 112, 112);
+}
+
+.space-div {
+    height: 45px;
+}
+
+.space-div2 {
+    height: 75px;
+}
+
+.report-blocks {
+    text-decoration: none;
+    color: inherit;
+    margin-top: 55px;
+}
+
+.report-blocks:hover {
+    text-decoration: none;
+}
+
+#gen-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    border: rgb(148, 148, 148) solid 2px;
+    border-radius: 6px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+}
+
+#gen-button:hover {
+    transition: all ease 0.3s;
+    transform: scale(1.12);
+    background-color: #007bff;
+}
+
+.rounded-btn {
+    background-color: rgb(148, 148, 148) !important; /* initial color */
+    color: white !important; /* text color */
+    border-radius: 50px !important; /* rounded effect */
+    transition: background-color 0.3s; /* smooth transition for hover effect */
+}
+
+.rounded-btn:hover {
+    background-color: limegreen !important; /* color on hover */
+    text-decoration: none; /* remove the underline from the link on hover */
+}
+
+.list-group {
+    border-radius: 0.5rem !important;
+    width: 100%;
+}
+
+.reportSectionTopWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 40px;
+}
+
+.reportSectionTop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border: rgb(148, 148, 148) solid 2px;
+    border-radius: 6px;
+    margin: 0 20px 0 20px;
+    background-color: rgb(228, 228, 228);
+}
+
+.reportData {
+    margin-bottom: 0 !important;
+}
+
+#dateReport {
+    background-color: rgb(228, 228, 228);
+    padding: 15px;
+    top: 50%;
+    left: 50%;
+    /*font-family: "Roboto Mono", monospace;*/
+    color: black;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-sizing: unset !important;
+}
+
+.reportSectionLowerWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.reportData2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 130px;
+    padding-bottom: 130px;
+    padding-left: 80px;
+    padding-right: 80px;
+    border: rgb(148, 148, 148) solid 2px;
+    border-radius: 6px;
+    margin: 0 20px 0 20px;
+    background-color: rgb(228, 228, 228);
+}
+
+.GotoGro {
+    margin-top: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(112, 112, 112);
+}
+
+.trendingGrid {
+    display: flex;
+    justify-content: center;
+}
+
+.left-Grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.center-Grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-Grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.productItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+    border: rgb(148, 148, 148) solid 2px;
+    border-radius: 6px;
+    margin: 0 20px 0 20px;
+    background-color: rgb(228, 228, 228);
+    margin-top: 10px;
+    max-width: 900px;
+}
+
+.items {
+    margin: 0 !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status {
+    font-size: small;
+    display: flex;
+    justify-content: center;
+}
+
+.yellow {
+    color: rgb(177, 177, 52);
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}

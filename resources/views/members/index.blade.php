@@ -1,11 +1,9 @@
-
 @extends('layouts.app')
 
 @section('content')
     <div class="container">
         <h1>All Members</h1>
->>>>>>> a866f66ace8b3270080003b82bde6526f91a0292
-
+        <a href="{{ route('members.create') }}" class="btn rounded-btn mb-3">Add Member</a>
         <table class="table">
             <thead>
                 <tr>
@@ -32,10 +30,18 @@
                         <td>{{ $member->Phone }}</td>
                         <td>{{ $member->Email }}</td>
                         <td>
-                            <a href="{{ route('members.show', $member->MemberID) }}" class="btn btn-success"><i
-                                    class="fas fa-edit"></i></a>
-                            <a href="{{ route('members.destroy', $member->MemberID) }}" class="btn btn-danger"><i
-                                    class="fas fa-trash"></i></a>
+                            <span>
+                                <a href="{{ route('members.show', $member->MemberID) }}" class="btn btn-success"><i
+                                        class="fas fa-edit"></i></a>
+                                <form action="{{ route('members.destroy', $member->MemberID) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </span>
                         </td>
                     </tr>
                 @endforeach

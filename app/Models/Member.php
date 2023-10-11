@@ -33,11 +33,11 @@ class Member extends Model
     }
 
     /**
-     * Get the sales transactions for the member.
+     * Get the transactions for the member.
      */
-    public function salesTransactions()
+    public function transactions()
     {
-        return $this->hasMany(SalesTransaction::class, 'MemberID', 'MemberID');
+        return $this->hasMany(Transaction::class, 'MemberID', 'MemberID');
     }
     use HasFactory;
 }
