@@ -19,6 +19,85 @@
                 </p>
             </div>
         @endisset
+        <ul class="custom-tabs nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="milk-tab"
+              data-toggle="pill"
+              data-target="#milk"
+              type="button"
+              role="tab"
+              aria-controls="milk"
+              aria-selected="true"
+            >
+              Milk
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="bread-tab"
+              data-toggle="pill"
+              data-target="#bread"
+              type="button"
+              role="tab"
+              aria-controls="bread"
+              aria-selected="false"
+            >
+              Bread
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="vegetable-tab"
+              data-toggle="pill"
+              data-target="#vegetable"
+              type="button"
+              role="tab"
+              aria-controls="vegetable"
+              aria-selected="false"
+            >
+              Vegetable
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="beauty-tab"
+              data-toggle="pill"
+              data-target="#beauty"
+              type="button"
+              role="tab"
+              aria-controls="beauty"
+              aria-selected="false"
+            >
+              Beauty
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="health-tab"
+              data-toggle="pill"
+              data-target="#health"
+              type="button"
+              role="tab"
+              aria-controls="health"
+              aria-selected="false"
+            >
+              Health
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="milk"
+            role="tabpanel"
+            aria-labelledby="milk-tab"
+          >
         <table class="table">
             <thead>
                 <tr>
