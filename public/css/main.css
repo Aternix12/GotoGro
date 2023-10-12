@@ -711,3 +711,35 @@ img {
 .green {
     color: green;
 }
+
+.head-btn .btn {
+    background: grey;
+    border-radius: 50px;
+    color: white;
+  }
+  
+  .head-btn {
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+  .custom-tabs {
+    background: lightgrey !important;
+  }
+  
+  .custom-tabs li.nav-item {
+    border: none !important;
+  }
+  
+  .custom-tabs .nav-link.active {
+    background-color: grey !important;
+  }
+  
+  .custom-tabs .nav-pills .nav-link {
+    border: none;
+    background-color: lightgrey !important;
+  }
+  
+  .custom-tabs .nav-pills .nav-link button:hover {
+    transition: none !important;
+    transform: none !important;
+  }
