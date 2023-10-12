@@ -7,14 +7,14 @@
     <div class="container-gen">
         <div class="header-wrapper">
         <h1 class="gen-report">Generate report</h1>
-        <form action="">
+        <form action="report {{ ('date') }}.csv">
             <input type="date" id = "dateReport">
         
         </div>
         <div class="space-div"></div>
         <a href="{{ route('members.index') }}" class= "report-blocks">
             <div class="form-group-gen" >
-                <p class="internal-group">Members</p>
+                <p class="internal-group">{{ $memberCount }}</p>
                 <p class="internal-group">Date</p>
                 <p class="internal-group">Created</p>
             </div>

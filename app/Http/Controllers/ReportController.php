@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Models\Member;
+
 
 class ReportController extends Controller
 {
     public function index()
     {
-       // $reports = Report::all();
-        return view('reports.index');
+       $memberCount = Member::count();
+        return view('reports.index', compact('memberCount'));
     }
 }

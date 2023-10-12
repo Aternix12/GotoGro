@@ -711,3 +711,8 @@ img {
 .green {
     color: green;
 }
+
+/* category*/
+.cat {
+    margin-top: 30px !important;
+}
