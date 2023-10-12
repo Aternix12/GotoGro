@@ -50,10 +50,6 @@ class ReportController extends Controller
 
         $B = array_slice($frequency, count($A), (count($frequency) - count($A) - count($C)));
 
-        dd($B);
-
-
-
-        return view('reports.index');
+        return view('reports.index', compact('A', 'B', 'C'));
     }
 }

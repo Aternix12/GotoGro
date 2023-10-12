@@ -128,23 +128,26 @@
                 </div>
             </div>
             <div class="right-Grid">
-                <h3 class = "status yellow">Med</h3>
-                <div class="productItem">
-                <p class="items">Test</p>
-                   
-                    
-                </div>
                 <h3 class = "status green">High</h3>
-                <div class="productItem">
-                <p class="items">Test</p>
-                    
-                </div>
-                <h3 class = "status red">Low</h3>
-                <div class="productItem">
+                @foreach ($A as $item => $quantity)
+                    <div class="productItem">
+                        <p class="items">{{ $item }}</p>
+                    </div>
+                @endforeach
 
-                <p class="items">Test</p>
-                    
+                <h3 class = "status yellow">Med</h3>
+                @foreach ($B as $item => $quantity)
+                <div class="productItem">
+                    <p class="items">{{ $item }}</p>
                 </div>
+                @endforeach
+
+                <h3 class = "status red">Low</h3>
+                @foreach ($C as $item => $quantity)
+                <div class="productItem">
+                    <p class="items">{{ $item }}</p>
+                </div>
+                @endforeach
             </div>
         </div>
         <div class="buttonDiv">
