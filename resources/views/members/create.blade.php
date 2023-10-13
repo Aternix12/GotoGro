@@ -26,26 +26,35 @@
 
             <div class="form-group">
                 <label for="MemberStatusID">Member Status</label>
-                <select name="MemberStatusID" id="MemberStatusID" class="form-control" novalidate>
+                <select name="MemberStatusID" id="MemberStatusID" class="form-control {{ $errors->has('DateOfBirth') ? 'is-invalid' : '' }}" novalidate>
                     @foreach ($memberStatuses as $status)
                         <option value="{{ $status->MemberStatusID }}">{{ $status->MemberStatus }}</option>
                     @endforeach
                 </select>
+                @error('MemberStatusID')
+                    <span id="member_statusID_error" class ="error_message">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="DateOfBirth">Date of Birth</label>
-                <input type="date" name="DateOfBirth" id="DateOfBirth" class="form-control" novalidate>
+                <input type="date" name="DateOfBirth" id="DateOfBirth" class="form-control {{ $errors->has('DateOfBirth') ? 'is-invalid' : '' }}" novalidate>
                 <span id="date_error" class ="error_message"></span>
+                @error('DateofBirth')
+                    <span id="date_of_birth_error" class ="error_message">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="GenderID">Gender</label>
-                <select name="GenderID" id="GenderID" class="form-control" novalidate>
+                <select name="GenderID" id="GenderID" class="form-control {{ $errors->has('GenderID') ? 'is-invalid' : '' }}"novalidate>
                     @foreach ($genders as $gender)
                         <option value="{{ $gender->GenderID }}">{{ $gender->gender_name }}</option>
                     @endforeach
                 </select>
+                @error('GenderID')
+                    <span id="genderID_error" class ="error_message">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">

@@ -30,7 +30,7 @@ class MemberController extends Controller
         $firstNameRegex = "/^[a-z ,.'-]+$/i";
         $lastNameRegex = "/^[a-z ,.'-]+$/i";
         // https://stackoverflow.com/questions/39990179/regex-for-australian-phone-number-validation
-        $phoneNumberRegex = "/^(\+?\(61\)|\(\+?61\)|\+?61|\(0[1-9]\)|0[1-9])?( ?-?[0-9]){7,9}$/";
+        $phoneNumberRegex = "/^04\d{8}/";
 
         $rules = [
             'FirstName' => ['required', 'regex:' . $firstNameRegex],
@@ -46,9 +46,10 @@ class MemberController extends Controller
         $messages = [
             'FirstName.regex' => "Please only enter a name consisting of alphabetical characters.",
             'LastName.regex' => "Please only enter a name consisting of alphabetical characters.",
-            'Phone.regex' => "Please enter a valid Australian phone number.",
+            'Phone.regex' => "Please enter a valid Australian phone number in the format of 0412345678.",
             'Address.regex' => "Address must consist of a number, street name, and street sufix starting with a capital letter ie: '9 Niner Null' ",
             'Email.email' => "Enter a vaild email you fool.",
+            'DateOfBirth.required' => "You Moronic Troglodyte."
         ];
 
         $validateData = $request->validate($rules, $messages);
