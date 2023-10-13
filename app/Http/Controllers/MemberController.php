@@ -29,6 +29,8 @@ class MemberController extends Controller
         $addressRegex = '/^(?!\d+\s*$)[\d\w\s-]+(?:\s+(?:Access|Access|Alley|Amble|Approach|Arcade|Avenue|Banan|Bank|Bay|Beach|Bend|Boardwalk|Boulevard|Boulevarde|Bowl|Brace|Brae|Break|Bridge|Broadwalk|Broadway|Brow|Busway|Bypass|Causeway|Centre|Centreway|Chase|Circle|Circlet|Circuit|Circus|Close|Cluster|Colonnade|Common|Commons|Concord|Concourse|Connection|Copse|Corner|Corso|Course|Court|Courtyard|Cove|Crescent|Crest|Crief|Cross|Crossing|Cruiseway|Cul-De-Sac|Cut|Cutting|Dale|Dash|Dell|Dene|Deviation|Dip|Distributor|Divide|Dock|Domain|Down|Downs|Drive|Driveway|Easement|East|Edge|Elbow|End|Entrance|Esplanade|Estate|Expressway|Extension|Fairway|Fire Track|Fireline|Firetrack|Firetrail|Flat|Follow|Ford|Foreshore|Fork|Freeway|Front|Frontage|Gap|Garden|Gardens|Gate|Gateway|Glade|Glen|Grange|Green|Grove|Gully|Harbour|Haven|Heath|Heights|Highway|Hill|Hollow|Hub|Island|Junction|Key|Keys|Landing|Lane|Laneway|Line|Link|Linkway|Lookout|Loop|Lynne|Mall|Manor|Mart|Mead|Meander|Mew|Mews|Motorway|Nook|North|Null|Outlet|Outlook|Parade|Park|Parkway|Part|Pass|Passage|Path|Pathway|Place|Plaza|Pocket|Point|Port|Precinct|Promenade|Pursuit|Quad|Quadrant|Quay|Quays|Ramble|Ramp|Range|Reach|Reef|Reserve|Rest|Retreat|Return|Ride|Ridge|Right Of Way|Ring|Rise|Rising|River|Road|Roads|Roadway|Round|Route|Row|Run|Service Way|Serviceway|Slope|Spur|Square|Steps|Straight|Strait|Strand|Street|Strip|Subway|Tarn|Terrace|Throughway|Top|Tor|Track|Trail|Tramway|Triangle|Trunkway|Turn|Twist|Vale|Valley|Verge|View|Views|Villa|Village|Villas|Vista|Wade|Walk|Walkway|Waters|Waterway|Way|West|Wharf|Woods|Wynd))$/';
         $firstNameRegex = "/^[a-z ,.'-]+$/i";
         $lastNameRegex = "/^[a-z ,.'-]+$/i";
+        // https://stackoverflow.com/questions/39990179/regex-for-australian-phone-number-validation
+        $phoneNumberRegex = "/^(\+?\(61\)|\(\+?61\)|\+?61|\(0[1-9]\)|0[1-9])?( ?-?[0-9]){7,9}$/";
 
         $rules = [
             'FirstName' => ['required', 'regex:' . $firstNameRegex],
@@ -37,7 +39,7 @@ class MemberController extends Controller
             'DateOfBirth' => ['required'],
             'GenderID' => ['required'],
             'Address' => ['required', 'regex:' . $addressRegex],
-            'Phone' => 'required|',
+            'Phone' => ['required', 'regex' .$phoneNumberRegex],
             'Email' => 'required|email|max:320'
         ];
 
@@ -45,9 +47,8 @@ class MemberController extends Controller
             'FirstName.regex' => "Please only enter a name consisting of alphabetical characters.",
             'LastName.regex' => "Please only enter a name consisting of alphabetical characters.",
             'Phone.regex' => "Please enter a valid Australian phone number.",
-            'Address.regex' => "Adress bust consist of a number, street name, and street sufix starting with a capital letter ie: '9 Niner Null' ",
+            'Address.regex' => "Address must consist of a number, street name, and street sufix starting with a capital letter ie: '9 Niner Null' ",
             'Email.email' => "Enter a vaild email you fool.",
-
         ];
 
         $validateData = $request->validate($rules, $messages);
