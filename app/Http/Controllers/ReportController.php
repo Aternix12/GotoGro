@@ -14,7 +14,7 @@ class ReportController extends Controller
 {
     public function index()
     {
-       // $reports = Report::all();
+        // $reports = Report::all();
 
        // counting members etc 
        $memberCount = Member::Count();
@@ -28,7 +28,7 @@ class ReportController extends Controller
        $boundary = ceil($totalGroceryItems * 0.2);
        
 
-       // Get their TransactionItems
+        // Get their TransactionItems
         $transactionItems = TransactionItem::all();
         $frequency = array();
 
@@ -44,7 +44,6 @@ class ReportController extends Controller
             for ($i = 0; $i < $t->Quantity; $i++) {
                 $frequency[$item->ProductName]++;
             }
-
         }
 
         arsort($frequency);
