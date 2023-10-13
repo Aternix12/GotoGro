@@ -26,7 +26,7 @@
 
             <div class="form-group">
                 <label for="MemberStatusID">Member Status</label>
-                <select name="MemberStatusID" id="MemberStatusID" class="form-control {{ $errors->has('DateOfBirth') ? 'is-invalid' : '' }}" novalidate>
+                <select name="MemberStatusID" id="MemberStatusID" class="form-control {{ $errors->has('MemberStatusID') ? 'is-invalid' : '' }}" novalidate>
                     @foreach ($memberStatuses as $status)
                         <option value="{{ $status->MemberStatusID }}">{{ $status->MemberStatus }}</option>
                     @endforeach
@@ -39,7 +39,6 @@
             <div class="form-group">
                 <label for="DateOfBirth">Date of Birth</label>
                 <input type="date" name="DateOfBirth" id="DateOfBirth" class="form-control {{ $errors->has('DateOfBirth') ? 'is-invalid' : '' }}" novalidate>
-                <span id="date_error" class ="error_message"></span>
                 @error('DateofBirth')
                     <span id="date_of_birth_error" class ="error_message">{{ $message }}</span>
                 @enderror
@@ -76,7 +75,7 @@
             <div class="form-group">
                 <label for="Email">Email</label>
                 <input type="email" name="Email" id="Email" class="form-control" novalidate>
-                @error('Phone')
+                @error('Email')
                     <span id="email_error" class ="error_message">{{ $message }}</span>
                 @enderror
             </div>
