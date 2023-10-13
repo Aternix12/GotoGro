@@ -4,14 +4,8 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use App\Models\Member;
-
-=======
-use Illuminate\Support\Arr;
 use App\Models\TransactionItem;
 use App\Models\GroceryItem;
->>>>>>> 8f150c72b44a1a19f7679213499473a5adbd1755
 
 class ReportController extends Controller
 {

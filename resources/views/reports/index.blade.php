@@ -14,7 +14,7 @@
         <div class="space-div"></div>
         <a href="{{ route('members.index') }}" class= "report-blocks">
             <div class="form-group-gen" >
-                <p class="internal-group">{{ $memberCount }}</p>
+                <p class="internal-group"></p> 
                 <p class="internal-group">Date</p>
                 <p class="internal-group">Created</p>
             </div>
