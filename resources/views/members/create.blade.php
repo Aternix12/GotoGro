@@ -66,7 +66,7 @@
 
             <div class="form-group">
                 <label for="Phone">Phone</label>
-                <input type="tel" name="Phone" id="Phone" class="form-control" novalidate>
+                <input type="tel" name="Phone" id="Phone" class="form-control {{ $errors->has('Phone') ? 'is-invalid' : '' }}" novalidate>
                 @error('Phone')
                     <span id="phone_error" class ="error_message">{{ $message }}</span>
                 @enderror
@@ -74,7 +74,7 @@
 
             <div class="form-group">
                 <label for="Email">Email</label>
-                <input type="email" name="Email" id="Email" class="form-control" novalidate>
+                <input type="email" name="Email" id="Email" class="form-control {{ $errors->has('Email') ? 'is-invalid' : '' }}" novalidate>
                 @error('Email')
                     <span id="email_error" class ="error_message">{{ $message }}</span>
                 @enderror
@@ -83,47 +83,4 @@
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
-
-
-    <!-- <script>
-
-        //for the display of validation errors
-        function errorMsg(errors){ 
-            Object.keys(errors).forEach(fieldName =>{
-                const errorContainer = document.getElementById(`${fieldName}_error`);
-                if(errorContainer){
-                    errorContainer.innerText = errors[fieldName][0];
-                }
-            });
-        }
-
-        document.getElementById('memberForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(event.target);
-            //access controller
-            // ignore the error here. page still works
-            fetch('{{ route('members.store') }}', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.errors) {
-                    // Display errors next to form fields
-                    errorMsg(data.errors);
-                } else {
-                    // Handle success (redirect, show success message, etc.)
-                    alert(data.message);
-                    // access controller
-                    // ignore the error here. page still works
-                    window.location.href = '{{ route('members.index') }}';
-                }
-            })
-            .catch(error => {
-                // Handle other errors
-                console.error('Error:', error);
-            });
-        });
-    </script> -->
 @endsection
