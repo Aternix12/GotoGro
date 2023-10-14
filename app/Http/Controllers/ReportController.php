@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Models\Member;
 use Illuminate\Support\Arr;
 use App\Models\TransactionItem;
 use App\Models\GroceryItem;
+
 
 class ReportController extends Controller
 {
@@ -14,12 +16,17 @@ class ReportController extends Controller
     {
         // $reports = Report::all();
 
-        // Get all transactions
+       // counting members etc 
+       $memberCount = Member::Count();
 
-        // Get total count of Grocery Items, determine what is 20%
-        // Use ceil because with too few items, it might allow for only one item be in this category
-        $totalGroceryItems = GroceryItem::count();
-        $boundary = ceil($totalGroceryItems * 0.2);
+
+       // Get all transactions
+
+       // Get total count of Grocery Items, determine what is 20%
+       // Use ceil because with too few items, it might allow for only one item be in this category
+       $totalGroceryItems = GroceryItem::count();
+       $boundary = ceil($totalGroceryItems * 0.2);
+       
 
         // Get their TransactionItems
         $transactionItems = TransactionItem::all();
@@ -49,6 +56,6 @@ class ReportController extends Controller
 
         $B = array_slice($frequency, count($A), (count($frequency) - count($A) - count($C)));
 
-        return view('reports.index', compact('A', 'B', 'C'));
+        return view('reports.index', compact('A', 'B', 'C', 'memberCount'));
     }
 }
