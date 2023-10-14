@@ -39,7 +39,7 @@ class MemberController extends Controller
             'DateOfBirth' => ['required'],
             'GenderID' => ['required'],
             'Address' => ['required', 'regex:' . $addressRegex],
-            'Phone' => ['required', 'regex' .$phoneNumberRegex],
+            'Phone' => ['required', 'regex' . $phoneNumberRegex],
             'Email' => 'required|email|max:320'
         ];
 
