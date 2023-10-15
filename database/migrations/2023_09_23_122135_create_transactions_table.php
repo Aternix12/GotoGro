@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedTinyInteger('OrderStatusID');
             $table->foreign('MemberID')->references('MemberID')->on('members');
             $table->foreign('OrderStatusID')->references('OrderStatusID')->on('order_statuses');
-            $table->timestamps();
             $table->decimal('TotalAmount', 8, 2);
             $table->timestamp('Date')->useCurrent();
         });

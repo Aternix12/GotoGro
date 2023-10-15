@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('Address', 64);
             $table->char('Phone', 10);
             $table->string('Email', 256);
+            $table->timestamps();
 
             $table->foreign('GenderID')->references('GenderID')->on('genders');
             $table->foreign('MemberStatusID')->references('MemberStatusID')->on('member_statuses');

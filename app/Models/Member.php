@@ -9,7 +9,7 @@ class Member extends Model
 {
     protected $table = 'members';
     protected $primaryKey = 'MemberID';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'FirstName', 'LastName', 'MemberStatusID',
         'DateOfBirth', 'GenderID', 'Address', 'Phone', 'Email'

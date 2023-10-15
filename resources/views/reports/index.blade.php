@@ -1,95 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- Need to add references to DB through these. Just dummy fillings atm --}}
-    <div class="space-div2"></div>
-    <div class="container-gen">
-        <div class="header-wrapper">
-            <h1 class="gen-report">Generate report</h1>
-            <form action="report {{ 'date' }}.csv">
-                <input type="date" id = "dateReport">
+    <div class="container">
+        <!-- Header and Date Picker -->
+        <span>
+            <h1>Reports</h1>
+            <form action="{{ route('reports.index') }}" method="GET">
+                <input type="date" name="dateReport" id="dateReport" value="{{ $date }}">
+                <input type="submit" value="Filter">
+            </form>
+        </span>
 
-        </div>
-        <div class="space-div"></div>
-        <a href="{{ route('members.index') }}" class= "report-blocks">
-            <div class="form-group-gen">
-                <p class="internal-group"> {{ $memberCount->MemberID }}</p>
-                <p class="internal-group">Date</p>
-                <p class="internal-group">Created</p>
-            </div>
-
-        </a>
-        <a href="{{ route('transactions.index') }}" class= "report-blocks">
-            <div class="form-group-gen">
-                <p class="internal-group">Transaction</p>
-                <p class="internal-group">Date</p>
-                <p class="internal-group">Created</p>
-            </div>
-
-        </a>
-        <a href="{{ route('items.index') }}" class= "report-blocks">
-            <div class="form-group-gen">
-                <p class="internal-group">Items</p>
-                <p class="internal-group">Date</p>
-                <p class="internal-group">Created</p>
-            </div>
-
-        </a>
-        <h2 class="GotoGro">Goto-Gro MRM</h2>
+        <!-- Sales, Transactions, and Members Summary -->
         <div class="reportSectionTopWrapper">
             <div class="reportSectionTop">
-                <p class="reportData">
-                    Filler
-                </p>
-                <p class="reportDataBottom">
-                    Filler but longer
-                </p>
+                <h4>Sales</h4>
+                <p class="reportDataBottom">${{ number_format($totalSales, 2) }}</p>
             </div>
-
             <div class="reportSectionTop">
-                <p class="reportData">
-                    Filler
-                </p>
-                <p class="reportDataBottom">
-                    Filler but longer
-                </p>
+                <h4>Number of Transactions</h4>
+                <p class="reportDataBottom">{{ $totalTransactions }}</p>
             </div>
-
             <div class="reportSectionTop">
-                <p class="reportData">
-                    Filler
-                </p>
-                <p class="reportDataBottom">
-                    Filler but longer
-                </p>
+                <h4>New Members</h4>
+                <p class="reportDataBottom">{{ $newMembers }}</p>
             </div>
         </div>
+
+        <!-- Additional Data -->
         <div class="reportSectionLowerWrapper">
             <div class="reportData2">
-                <p class="reportDataForecast">
-                    Trending products filler
-                </p>
-                <p class="reportDataForecast2">
-                    Inventory forecast
-                </p>
+                <h4>Trending Products with Stock Levels</h4>
             </div>
             <div class="reportData2">
-                <p class="reportDataForecast">
-                    Trending products filler
-                </p>
-                <p class="reportDataForecast2">
-                    Inventory forecast
-                </p>
+                <h4>Inventory Forecast</h4>
             </div>
         </div>
-        <div class="trendingProducts">
-            <h2 class="GotoGro">
-                Goto-Gro MRM
-            </h2>
-            <h2 id="gen-head">
-                Trending Products
-            </h2>
-        </div>
+
+        <!-- Trending Products Grid -->
+        <hr>
         <div class="trendingGrid">
             <div class="left-Grid">
                 <div class="productItem">
@@ -127,34 +76,35 @@
                 </div>
             </div>
             <div class="right-Grid">
-                <h3 class = "status green">High</h3>
-                @foreach ($A as $item => $quantity)
+                <!-- High Status -->
+                <h3 class="status green">High</h3>
+                @foreach ($a as $item => $quantity)
                     <div class="productItem">
-                        <p class="items">{{ $item }}</p>
+                        <p class="items">{{ $item }} ({{ $quantity }})</p>
                     </div>
                 @endforeach
 
-                <h3 class = "status yellow">Med</h3>
-                @foreach ($B as $item => $quantity)
+                <!-- Med Status -->
+                <h3 class="status yellow">Med</h3>
+                @foreach ($b as $item => $quantity)
                     <div class="productItem">
-                        <p class="items">{{ $item }}</p>
+                        <p class="items">{{ $item }} ({{ $quantity }})</p>
                     </div>
                 @endforeach
 
-                <h3 class = "status red">Low</h3>
-                @foreach ($C as $item => $quantity)
+                <!-- Low Status -->
+                <h3 class="status red">Low</h3>
+                @foreach ($c as $item => $quantity)
                     <div class="productItem">
-                        <p class="items">{{ $item }}</p>
+                        <p class="items">{{ $item }} ({{ $quantity }})</p>
                     </div>
                 @endforeach
             </div>
         </div>
+
+        <!-- Generate Button -->
         <div class="buttonDiv">
-            <button id="gen-button">
-                Generate
-            </button>
+            <button id="gen-button">Generate</button>
         </div>
     </div>
-    </div>
-    </form>
 @endsection
