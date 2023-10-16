@@ -25,13 +25,15 @@
               class="nav-link active"
               id="milk-tab"
               data-toggle="pill"
-              data-target="#milk"
+              data-target="Health"
               type="button"
               role="tab"
               aria-controls="milk"
               aria-selected="true"
+              data-category-id="1"
+
             >
-              Milk
+              Health
             </button>
           </li>
           <li class="nav-item" role="presentation">
@@ -39,55 +41,44 @@
               class="nav-link"
               id="bread-tab"
               data-toggle="pill"
-              data-target="#bread"
+              data-target="Beauty"
               type="button"
               role="tab"
               aria-controls="bread"
               aria-selected="false"
+              data-category-id="2"
             >
-              Bread
+              beauty
             </button>
           </li>
           <li class="nav-item" role="presentation">
             <button
               class="nav-link"
               id="vegetable-tab"
-              data-toggle="pill"
-              data-target="#vegetable"
+              data-toggle="Cookware"
+              data-target="3"
               type="button"
               role="tab"
               aria-controls="vegetable"
               aria-selected="false"
+              data-category-id="3"
             >
-              Vegetable
+              Cookware
             </button>
           </li>
           <li class="nav-item" role="presentation">
             <button
               class="nav-link"
               id="beauty-tab"
-              data-toggle="pill"
-              data-target="#beauty"
+              data-toggle="Confectionary"
+              data-target="4"
               type="button"
               role="tab"
               aria-controls="beauty"
               aria-selected="false"
+              data-category-id="4"
             >
-              Beauty
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link"
-              id="health-tab"
-              data-toggle="pill"
-              data-target="#health"
-              type="button"
-              role="tab"
-              aria-controls="health"
-              aria-selected="false"
-            >
-              Health
+              Confectionary
             </button>
           </li>
         </ul>
@@ -98,7 +89,7 @@
             role="tabpanel"
             aria-labelledby="milk-tab"
           >
-        <table class="table">
+        <table class="table" id = "table-body">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -136,5 +127,55 @@
                 @endforeach
             </tbody>
         </table>
+        
     </div>
+    <script>
+          // custom.js
+
+$(document).ready(function () {
+    $('.nav-link').click(function () {
+        var categoryId = $(this).data('category-id');
+
+        $.ajax({
+            type: 'GET',
+            url: '/get-items-by-category',
+            data: { categoryId: categoryId },
+            success: function (data) {
+                updateTable(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    function updateTable(data) {
+    var tableBody = $('#table-body'); // Assuming your table body has an ID of 'table-body'
+    tableBody.empty();
+
+    for (var i = 0; i < data.length; i++) {
+        var row = '<tr>';
+        row += '<td>' + (data[i].GroceryID || '') + '</td>';
+        row += '<td>' + (data[i].ProductName || '') + '</td>';
+        row += '<td>' + (data[i].Stock || '') + '</td>';
+        row += '<td>$' + (data[i].Price ? data[i].Price.toFixed(2) : '') + '</td>';
+        row += '<td>' + ((data[i].category && data[i].category.CategoryName) || '') + '</td>';
+        row += '<td>' + ((data[i].department && data[i].department.DepartmentName) || '') + '</td>';
+        row += '<td>';
+        row += '<a href="/items/' + (data[i].GroceryID || '') + '" class="btn btn-success"><i class="fas fa-edit"></i></a>';
+        row += '<form action="/items/' + (data[i].GroceryID || '') + '" method="POST" style="display: inline;">';
+        row += '@csrf';
+        row += '@method("DELETE")';
+        row += '<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>';
+        row += '</form>';
+        row += '</td>';
+        row += '</tr>';
+
+        tableBody.append(row);
+    }
+}
+
+});
+
+    </script>
 @endsection

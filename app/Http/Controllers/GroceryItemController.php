@@ -80,4 +80,24 @@ class GroceryItemController extends Controller
             ->get();
         return response()->json($items);
     }
+
+
+    public function getItemsByCategory(Request $request)
+    {
+        try {
+            $categoryId = $request->input('categoryId');
+            $items = GroceryItem::where('CategoryID', $categoryId)->get();
+    
+            \Log::info('Category ID: ' . $categoryId);
+            \Log::info('Items: ' . json_encode($items));
+    
+            return response()->json($items);
+        } catch (\Exception $e) {
+            \Log::error($e);
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
 }
+
+
+
