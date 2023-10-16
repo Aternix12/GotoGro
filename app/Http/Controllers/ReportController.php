@@ -38,6 +38,46 @@ class ReportController extends Controller
             $frequency[$t->groceryItem->ProductName] = $t->sum;
         }
 
+
+        // Get two weeks worth of data to calculate moving average over a week
+        $twoWeeksBefore = $startDate->copy()->subDays(13);
+
+        // Apply to Category A
+        foreach ($frequency as $item => $units) {
+            $groceryItem = GroceryItem::where('ProductName', $item)->first();
+            // dd($groceryItem->ProductName);
+
+            // Calculate moving average using transactions over two weeks for item
+            for ($i = 0; $i < 7; $i++) {
+                // Start calculation a week prior
+                $date = $startDate->copy()->subDays(6 - $i);
+            
+                $sum = TransactionItem::where('GroceryID', $groceryItem->GroceryID)
+                    ->whereHas('transaction', function ($query) use ($date) {
+                        $query->whereBetween('date', [$date->copy()->subDays(6), $date]); // Select the previous 7 days yet again including the current day
+                    })->sum('quantity');
+            
+                $average = $sum / 7; // Calculate average over the 7 days
+            
+                $movingAverages[$date->toDateString()] = $average;
+            }
+
+
+            // Get trending direction
+
+            // Get first average and current average, get difference
+            $changeInY = abs($movingAverages[$startDate->copy()->subDays(6)->toDateString()] - $movingAverages[$startDate->toDateString()]);
+
+            // Calculate gradient (slope)
+            $gradient = $changeInY / 7;
+
+            // Combine value of current day with trending direction to get weighting
+            $weighting = $movingAverages[$startDate->toDateString()] + $gradient;
+
+            $frequency[$item] = round($frequency[$item] * $weighting, 2);
+
+        }
+
         arsort($frequency);
 
         $a = array_slice($frequency, 0, $boundary);
