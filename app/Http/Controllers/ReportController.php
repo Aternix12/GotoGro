@@ -51,14 +51,14 @@ class ReportController extends Controller
             for ($i = 0; $i < 7; $i++) {
                 // Start calculation a week prior
                 $date = $startDate->copy()->subDays(6 - $i);
-            
+
                 $sum = TransactionItem::where('GroceryID', $groceryItem->GroceryID)
                     ->whereHas('transaction', function ($query) use ($date) {
                         $query->whereBetween('date', [$date->copy()->subDays(6), $date]); // Select the previous 7 days yet again including the current day
                     })->sum('quantity');
-            
+
                 $average = $sum / 7; // Calculate average over the 7 days
-            
+
                 $movingAverages[$date->toDateString()] = $average;
             }
 
@@ -75,7 +75,6 @@ class ReportController extends Controller
             $weighting = $movingAverages[$startDate->toDateString()] + $gradient;
 
             $frequency[$item] *= $weighting;
-
         }
 
         arsort($frequency);
@@ -83,8 +82,13 @@ class ReportController extends Controller
         $max = end($frequency);
 
         // 1 = high ranking, 0 = low ranking
+        // 1 = high ranking, 0 = low ranking
         foreach ($frequency as $item => $weightedUnits) {
-            $frequency[$item] = round(1 - ($weightedUnits - $min) / ($max - $min), 2);
+            if ($max - $min != 0) { //Avoiding divide by zero
+                $frequency[$item] = round(1 - ($weightedUnits - $min) / ($max - $min), 2);
+            } else {
+                $frequency[$item] = 1;
+            }
         }
 
         $a = array_slice($frequency, 0, $boundary);
