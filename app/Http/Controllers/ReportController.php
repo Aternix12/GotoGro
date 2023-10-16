@@ -74,11 +74,18 @@ class ReportController extends Controller
             // Combine value of current day with trending direction to get weighting
             $weighting = $movingAverages[$startDate->toDateString()] + $gradient;
 
-            $frequency[$item] = round($frequency[$item] * $weighting, 2);
+            $frequency[$item] *= $weighting;
 
         }
 
         arsort($frequency);
+        $min = reset($frequency);
+        $max = end($frequency);
+
+        // 1 = high ranking, 0 = low ranking
+        foreach ($frequency as $item => $weightedUnits) {
+            $frequency[$item] = round(1 - ($weightedUnits - $min) / ($max - $min), 2);
+        }
 
         $a = array_slice($frequency, 0, $boundary);
         $c = array_slice($frequency, -$boundary);
