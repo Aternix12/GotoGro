@@ -19,68 +19,26 @@
                 </p>
             </div>
         @endisset
-        <ul class="custom-tabs nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link active"
-              id="milk-tab"
-              data-toggle="pill"
-              data-target="Health"
-              type="button"
-              role="tab"
-              aria-controls="milk"
-              aria-selected="true"
-              data-category-id="1"
 
-            >
-              Health
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link"
-              id="bread-tab"
-              data-toggle="pill"
-              data-target="Beauty"
-              type="button"
-              role="tab"
-              aria-controls="bread"
-              aria-selected="false"
-              data-category-id="2"
-            >
-              beauty
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link"
-              id="vegetable-tab"
-              data-toggle="Cookware"
-              data-target="3"
-              type="button"
-              role="tab"
-              aria-controls="vegetable"
-              aria-selected="false"
-              data-category-id="3"
-            >
-              Cookware
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link"
-              id="beauty-tab"
-              data-toggle="Confectionary"
-              data-target="4"
-              type="button"
-              role="tab"
-              aria-controls="beauty"
-              aria-selected="false"
-              data-category-id="4"
-            >
-              Confectionary
-            </button>
-          </li>
+        
+        <ul class="custom-tabs nav nav-pills mb-3" id="pills-tab" role="tablist">
+          @foreach ($categories as $category)
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                data-toggle="pill"
+                data-target="{{ $category->CategoryName }}"
+                type="button"
+                role="tab"
+                aria-controls="{{ $category->CategoryName }}"
+                aria-selected="true"
+                data-category-id="{{ $category->CategoryID }}"
+
+              >
+                {{ $category->CategoryName }}
+              </button>
+            </li>
+          @endforeach
         </ul>
         <div class="tab-content" id="pills-tabContent">
           <div
@@ -134,6 +92,9 @@
 
 $(document).ready(function () {
     $('.nav-link').click(function () {
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
+
         var categoryId = $(this).data('category-id');
 
         $.ajax({

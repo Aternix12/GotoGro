@@ -14,7 +14,8 @@ class GroceryItemController extends Controller
     {
         $groceryItems = GroceryItem::all();
         $newGroceryItem = GroceryItem::find(request('groceryItem'));
-        return view('items.index', compact('groceryItems', 'newGroceryItem'));
+        $categories = Category::all();
+        return view('items.index', compact('groceryItems', 'newGroceryItem', 'categories'));
     }
 
     public function create()
