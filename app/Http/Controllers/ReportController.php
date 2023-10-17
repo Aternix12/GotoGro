@@ -14,7 +14,7 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        $date = $request->input('dateReport') ?? Carbon::now()->toDateString();
+        $date = $request->input('dateReport') ? Carbon::parse($request->input('dateReport'))->format('Y-m-d') : Carbon::now()->format('Y-m-d');
 
         $startDate = Carbon::parse($date)->startOfDay();
         $endDate = Carbon::parse($date)->endOfDay();
@@ -95,6 +95,34 @@ class ReportController extends Controller
         $c = array_slice($frequency, -$boundary);
         $b = array_slice($frequency, count($a), count($frequency) - count($a) - count($c));
 
-        return view('reports.index', compact('totalTransactions', 'newMembers', 'a', 'b', 'c', 'memberCount', 'totalGroceryItems', 'totalSales', 'date'));
+        //Most Purchased Products
+        $mostPurchasedItems = TransactionItem::with('groceryItem')
+            ->selectRaw('GroceryID, SUM(quantity) as sum')
+            ->groupBy('GroceryID')
+            ->orderBy('sum', 'desc')
+            ->take(5)
+            ->get();
+
+        $stockLevels = GroceryItem::select('ProductName', 'Stock')
+            ->orderBy('Stock', 'asc')
+            ->take(5)  // lowest 3 stock levels
+            ->get();
+
+        //Resetting Date
+        $date = $request->input('dateReport') ? Carbon::parse($request->input('dateReport'))->format('Y-m-d') : Carbon::now()->format('Y-m-d');
+
+        return view('reports.index', compact(
+            'totalTransactions',
+            'newMembers',
+            'a',
+            'b',
+            'c',
+            'memberCount',
+            'totalGroceryItems',
+            'totalSales',
+            'date',
+            'mostPurchasedItems',
+            'stockLevels'
+        ));
     }
 }
