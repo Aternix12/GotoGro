@@ -98,6 +98,20 @@ class GroceryItemController extends Controller
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
+
+    public function getAllItems()
+    {
+        try {
+            $items = GroceryItem::all();
+    
+            \Log::info('Items: ' . json_encode($items));
+    
+            return response()->json($items);
+        } catch (\Exception $e) {
+            \Log::error($e);
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
 }
 
 

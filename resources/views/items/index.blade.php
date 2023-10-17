@@ -20,7 +20,7 @@
             </div>
         @endisset
 
-        
+        <a href="#" id="showAllBtn" class="btn rounded-btn mb-3">Show All</a>
         <ul class="custom-tabs nav nav-pills mb-3" id="pills-tab" role="tablist">
           @foreach ($categories as $category)
             <li class="nav-item" role="presentation">
@@ -91,6 +91,8 @@
           // custom.js
 
 $(document).ready(function () {
+
+    // Show items by selected category
     $('.nav-link').click(function () {
         $('.nav-link').removeClass('active');
         $(this).addClass('active');
@@ -101,6 +103,22 @@ $(document).ready(function () {
             type: 'GET',
             url: '/get-items-by-category',
             data: { categoryId: categoryId },
+            success: function (data) {
+                updateTable(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    // Show all items
+    $('#showAllBtn').click(function () {
+        $('.nav-link').removeClass('active');
+
+        $.ajax({
+            type: 'GET',
+            url: '/get-all-items',
             success: function (data) {
                 updateTable(data);
             },

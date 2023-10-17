@@ -41,4 +41,5 @@ Route::get('/index', [ReportController::class, 'index']);
 
 
 Route::get('/get-items-by-category', [GroceryItemController::class, 'getItemsByCategory'])->name('items.by.category');
+Route::get('/get-all-items', [GroceryItemController::class, 'getAllItems'])->name('all.items');
 
