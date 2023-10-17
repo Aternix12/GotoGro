@@ -30,59 +30,82 @@
         <!-- Additional Data -->
         <div class="reportSectionLowerWrapper">
             <div class="reportData2">
-                <h4>Trending Products with Stock Levels</h4>
+                <h4>Today's Trending Products</h4>
+                <div class="left-Grid">
+                    <div class="productItem">
+                        <p class="items">Test</p>
+                        <p class="items">Low</p>
+
+                    </div>
+                    <div class="productItem">
+                        <p class="items">Test</p>
+                        <p class="items">High</p>
+
+                    </div>
+                    <div class="productItem">
+                        <p class="items">Test</p>
+                        <p class="items">Low</p>
+
+                    </div>
+                </div>
             </div>
             <div class="reportData2">
-                <h4>Inventory Forecast</h4>
+                <h4>Stock Levels</h4>
+                <div class="center-Grid">
+                    <div class="productItem">
+                        <p class="items">Test</p>
+                        <img src="{{ asset('img/red.png') }}" alt="red" class="red">
+                    </div>
+                    <div class="productItem">
+                        <p class="items">Test</p>
+                        <img src="{{ asset('img/yellow.png') }}" alt="yellow" class="yellow">
+
+
+                    </div>
+                    <div class="productItem">
+                        <p class="items">Test</p>
+                        <img src="{{ asset('img/green.png') }}" alt="red" class="green">
+
+
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Trending Products Grid -->
         <hr>
+        <h3>Product Demand Analytics</h3>
+        <p>Analytics are derived from the ABC method using units sold combined with the simple moving average of units sold over the past week with the trend gradient applied as a weighting on the ABC ranking for all grocery items.</p>   
+        <ul>
+            <li>Info on the ABC method and other inventory analysis and forecasting methods can be found <a href="https://www.netsuite.com/portal/resource/articles/inventory-management/retail-inventory-management.shtml">here</a>.</li>
+            <li>
+                The moving average takes into account the previous week's worth of units sold for a grocery item which is applied to 7 days preceding the selected report date.
+                Details on the moving average can be found <a href="https://www.investopedia.com/terms/m/movingaverage.asp">here</a>.
+            </li>
+        </ul>
+
+        <h4>How to read the data</h4>
+
+        <ul>
+            <li><strong style="color: red;">High</strong> - Indicates that these products are in high demand and should be cross checked with stock levels to plan restocking accordingly.</li>
+            <li><strong style="color: rgb(177, 177, 52);">Medium</strong>  - Indicates that these products are neither high, nor low in demand and restocking for these should be evaluated on a case by case basis.</li>
+            <li><strong style="color: green;">Low</strong> - Indicates that these products are low in demand and restocking is not a priority.</li>
+        </ul>
+
         <div class="trendingGrid">
+            
+            
             <div class="left-Grid">
-                <div class="productItem">
-                    <p class="items">Test</p>
-                    <p class="items">Low</p>
-
-                </div>
-                <div class="productItem">
-                    <p class="items">Test</p>
-                    <p class="items">High</p>
-
-                </div>
-                <div class="productItem">
-                    <p class="items">Test</p>
-                    <p class="items">Low</p>
-
-                </div>
-            </div>
-            <div class="center-Grid">
-                <div class="productItem">
-                    <p class="items">Test</p>
-                    <img src="{{ asset('img/red.png') }}" alt="red" class="red">
-                </div>
-                <div class="productItem">
-                    <p class="items">Test</p>
-                    <img src="{{ asset('img/yellow.png') }}" alt="yellow" class="yellow">
-
-
-                </div>
-                <div class="productItem">
-                    <p class="items">Test</p>
-                    <img src="{{ asset('img/green.png') }}" alt="red" class="green">
-
-
-                </div>
-            </div>
-            <div class="right-Grid">
+            
                 <!-- High Status -->
-                <h3 class="status green">High</h3>
+                <h3 class="status red">High</h3>
                 @foreach ($a as $item => $quantity)
                     <div class="productItem">
                         <p class="items">{{ $item }} ({{ $quantity }})</p>
                     </div>
                 @endforeach
+            </div>
+            <div class="center-Grid">
 
                 <!-- Med Status -->
                 <h3 class="status yellow">Med</h3>
@@ -91,9 +114,10 @@
                         <p class="items">{{ $item }} ({{ $quantity }})</p>
                     </div>
                 @endforeach
-
+            </div>
+            <div class="right-Grid">
                 <!-- Low Status -->
-                <h3 class="status red">Low</h3>
+                <h3 class="status green">Low</h3>
                 @foreach ($c as $item => $quantity)
                     <div class="productItem">
                         <p class="items">{{ $item }} ({{ $quantity }})</p>
