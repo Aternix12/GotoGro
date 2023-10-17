@@ -38,6 +38,7 @@ Route::get('sales/{date}', [SalesRecordController::class, 'show']);
 Route::resource('reports', ReportController::class);
 
 Route::get('/index', [ReportController::class, 'index']);
+Route::get('/getCSV', [ReportController::class, 'getCSV'])->name('csv');
 
 
 Route::get('/get-items-by-category', [GroceryItemController::class, 'getItemsByCategory'])->name('items.by.category');
