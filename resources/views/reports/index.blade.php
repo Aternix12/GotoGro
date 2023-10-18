@@ -125,42 +125,17 @@
             <button id="gen-button">Generate</button>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Show items by selected category
-            $('#gen-button').click(function () {
-
+            $('#gen-button').click(function() {
                 var selectedDate = $('#dateReport').val();
-
-                $.ajax({
-                    type: 'GET',
-                    url: '/getCSV',
-                    data: { dateReport: selectedDate },
-                    success: function (response) {
-                        // Log the entire response for inspection
-                    console.log(response);
-
-                    // Check if 'message' property exists in the response
-                    if (response.hasOwnProperty('message')) {
-                        console.log(response.message); // Access the 'message' property
-                    } else {
-                        console.log('No "message" property found in the response.');
-                    }
-                                            
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+                window.location.href = '/getCSV?dateReport=' + selectedDate;
             });
         });
     </script>
-
-
-
 @endsection

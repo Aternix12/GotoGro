@@ -10,6 +10,8 @@ use App\Models\TransactionItem;
 use App\Models\GroceryItem;
 use Carbon\Carbon;
 use League\Csv\Writer;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 
 class ReportController extends Controller
 {
@@ -127,11 +129,12 @@ class ReportController extends Controller
         ));
     }
 
-    public function show() {
-
+    public function show()
+    {
     }
 
-    public function getCSV(Request $request) {
+    public function getCSV(Request $request)
+    {
         $date = $request->input('dateReport') ? Carbon::parse($request->input('dateReport'))->format('Y-m-d') : Carbon::now()->format('Y-m-d');
         $startDate = Carbon::parse($date)->startOfDay();
         $endDate = Carbon::parse($date)->endOfDay();
@@ -140,7 +143,7 @@ class ReportController extends Controller
         $totalTransactions = Transaction::whereBetween('Date', [$startDate, $endDate])->count();
         $newMembers = Member::whereBetween('created_at', [$startDate, $endDate])->count();
 
-        //Most Purchased Products
+        // Most Purchased Products
         $mostPurchasedItems = TransactionItem::with('groceryItem')
             ->selectRaw('GroceryID, SUM(quantity) as sum')
             ->groupBy('GroceryID')
@@ -150,70 +153,56 @@ class ReportController extends Controller
 
         $stockLevels = GroceryItem::select('ProductName', 'Stock')
             ->orderBy('Stock', 'asc')
-            ->take(5)  // lowest 3 stock levels
+            ->take(5)
             ->get();
 
-        $filename = 'gotogro_report_' . $date . '.csv';
-        $filepath = storage_path('app\\public\\csv\\' . $filename);
-
-        
         try {
-            $csv = Writer::createFromPath($filepath, 'w+');
+            $tempFilePath = storage_path('temp' . DIRECTORY_SEPARATOR . 'gotogro_report_' . $date . '.csv');
+            $csv = Writer::createFromPath('php://temp', 'w+');
 
-            $data = array([$date,'','','']);
+            // Insert Daily Stats
+            $csv->insertOne([$date, '', '', '']);
+            $csv->insertOne(['Sales', 'Number of Transactions', 'New Members', '']);
+            $csv->insertOne([$totalSales, $totalTransactions, $newMembers, '']);
 
-            $dailyStats = array(
-                ['Sales','Number of Transactions','New Members',''],
-                [$totalSales,$totalTransactions,$newMembers,'']
-            );
+            // Insert Most Purchased Products
+            $csv->insertOne(['Trending Products Today', '', '', '']);
+            $csv->insertOne(['ProductID', 'ProductName', 'UnitsSold', '']);
 
-            $csvTrendingProducts = [];
             foreach ($mostPurchasedItems as $item) {
-                $trendingProducts[] = [
+                $csv->insertOne([
+                    $item->GroceryID,
                     $item->groceryItem->ProductName,
                     $item->sum,
                     '',
-                    '',
-                ];
+                ]);
             }
 
-            $trendingProducts = [];
+            // Insert Stock Levels
+            $csv->insertOne(['Stock Levels', '', '', '']);
+            $csv->insertOne(['ProductID', 'ProductName', 'Stock', 'Level']);
 
-            $merge = array_merge($data, $dailyStats, $csvTrendingProducts);
+            foreach ($stockLevels as $item) {
+                $csv->insertOne([
+                    $item->ProductID,
+                    $item->ProductName,
+                    $item->Stock,
+                    '',  // You may insert Stock Level description here, if available.
+                ]);
+            }
 
-            $data = [
-                [$date,'','',''],
-                ['Sales','Number of Transactions','New Members',''],
-                ['$32.00','8','1',''],
-                ['Trending Products Today','','',''],
-                ['ProductID','ProductName','UnitsSold',''],
-                ['1','Grapes','6',''],
-                ['Stock Levels','','',''],
-                ['ProductID','ProductName','Stock','Level'],
-                ['2','Coconut','10','Medium'],
-                ['Product Demand Analytics','','',''],
-                ['Demand','ProductID','ProductName','Score'],
-                ['High','1','Grapes','1'],
-                ['Medium','1','Grapes','1'],
-                ['Low','1','Grapes','1'],
-            ];
-
-            
-
-            $csv->insertAll($merge);
-
-            // Log a message or data
-            \Log::info('CSV file path: ' . $filepath);
-
-            return response()->json(['message' => $filepath], 200);
-
-
-            // ->json(['message' => 'CSV file generated successfully']);
-
+            return Response::stream(function () use ($csv) {
+                ob_start();
+                $csv->output();  // Output to the internal buffer
+                $output = ob_get_clean();  // Get the contents of the buffer
+                echo $output;  // Output the buffer contents
+            }, 200, [
+                'Content-Type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename="gotogro_report_' . $date . '.csv"',
+            ]);
         } catch (\Exception $e) {
-            \Log::error($e);
+            Log::error($e);
             return response()->json(['error' => 'Failed to generate CSV file'], 500);
         }
-
     }
 }

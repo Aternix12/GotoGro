@@ -1,0 +1,13 @@
+2023-10-18,,,
+Sales,"Number of Transactions","New Members",
+11.97,1,0,
+"Trending Products Today",,,
+ProductID,ProductName,UnitsSold,
+1,Bread,3,
+2,Milk,3,
+3,Butter,2,
+"Stock Levels",,,
+ProductID,ProductName,Stock,Level
+,Milk,8,
+,Butter,15,
+,Bread,200,
